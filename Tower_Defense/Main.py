@@ -8,6 +8,12 @@ class Controleur():
         self.vue = vue.Vue(self, self.modele)
 
         self.vue.root.mainloop()
+        self.commencer_partie()
+
+    def commencer_partie(self):
+        while self.modele.enVie:
+            if (self.modele.chronoStarted == False):
+                self.modele.startChrono()
 
 
 
