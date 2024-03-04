@@ -11,15 +11,24 @@ class Modele():
         self.chronoStarted = False
         self.enVie = True
         self.chrono = 10
+        self.argent = 200
+        self.nbVies = 20
+        self.vague = 1
+        self.dict_rect = {      #coordonnées troncons
+            'start1': (10,10), 'end1': (60,60),
+            'start2': (70,70), 'end2': (130,130),
+            'start3': (140, 140), 'end3': (200, 200),
+            'start4': (210, 210), 'end4': (270, 270),
+            'start5': (280, 280), 'end5': (340, 340),
+            'start6': (350, 350), 'end6': (410, 410)
+        }
+        self.pos_chateau = None
+        self.nbCreeps = 20
+        self.creeps_inactifs = []
+        self.creeps_actifs = []
+
+    def commencer_partie(self):
+        pass
 
 
 
-    def startChrono(self):
-        self.chronoStarted = True
-        if self.chrono >= 0:
-            self.parent.vue.afficherChrono(self.chrono)
-            self.parent.vue.root.after(1000, self.startChrono)
-            self.chrono -= 1
-        else:
-            self.chronoStarted = False
-            self.parent.vue.root.after_cancel(self.startChrono)

@@ -1,3 +1,5 @@
+import tkinter as tk
+
 from tkinter import *
 class Vue:
     def __init__(self, parent, modele):
@@ -5,29 +7,42 @@ class Vue:
         self.modele = modele
         self.root = Tk()
         self.root.geometry("1280x960")  # 32x24 (x40)
-        self.collective_boxes_width = 600
         self.window_width = 1280
-        self.margin = (self.window_width - self.collective_boxes_width) / 2 # pour centrer les box de linterface joueur
+        self.create_canvases()
+        self.create_labels()
+        self.create_boxes()
 
+    def create_canvases(self):
+        # frame?
         self.canvas1 = Canvas(self.root, bg='white', height=432, width=1280)
         self.canvas1.pack(side=TOP, fill=BOTH, expand=True)
 
         self.canvas2 = Canvas(self.root, bg='black', height=144, width=1280)
         self.canvas2.pack(side=TOP, fill=BOTH, expand=True)
 
+        self.btn_commencer = Button(self.canvas2, text="Commencer", font=('Helvetica', 11),
+                                    command=self.parent.commencer_partie)
+
+        self.btn_commencer.pack(side=tk.LEFT, padx=100, pady=(20, 20),
+                                     anchor='n')  # Align buttons to the left with some padding
+
+    def create_labels(self):
         # Le contenu modifiable de chaque boite de linterface joueur
-        self.chronoLabel = Label(self.root, text="10", font=('Helvetica', 11), bg='white', width=5)
-        self.vagueLabel = Label(self.canvas2, text="1", font=('Helvetica', 11), bg='white', width=5)
+        self.chronoLabel = Label(self.root, text=str(self.modele.chrono), font=('Helvetica', 11), bg='white', width=5)
+        self.vagueLabel = Label(self.canvas2, text=str(self.modele.vague), font=('Helvetica', 11), bg='white', width=5)
         self.choixTourTitreLabel = Label(self.canvas2, text="", font=('Helvetica', 11), bg='yellow', width=0)
-        self.nbVieLabel = Label(self.root, text="20", font=('Helvetica', 11), bg='white', width=5)
-        self.argentLabel = Label(self.canvas2, text="200", font=('Helvetica', 11), bg='white', width=5)
+        self.nbVieLabel = Label(self.root, text=str(self.modele.nbVies), font=('Helvetica', 11), bg='white', width=5)
+        self.argentLabel = Label(self.canvas2, text=str(self.modele.argent), font=('Helvetica', 11), bg='white', width=5)
         self.tower1Label = Label(self.root, text="Projectile", font=('Helvetica', 11), bg='purple', width=8)
         self.tower2Label = Label(self.root, text="Éclair", font=('Helvetica', 11), bg='yellow', width=8)
         self.tower3Label = Label(self.root, text="Poison", font=('Helvetica', 11), bg='green', width=8)
 
         # La ou commencent les box de linterface joueur
+        self.collective_boxes_width = 600
+        self.margin = (self.window_width - self.collective_boxes_width) / 2  # pour centrer les box de linterface joueur
         self.start_x_position = self.margin
 
+    def create_boxes(self):
         # Chaque widget de linterface joueur
         self.create_box(self.start_x_position + 0, 15, self.start_x_position + 100, 65, "Chrono", self.chronoLabel)
         self.create_box(self.start_x_position + 0, 75, self.start_x_position + 100, 125, "Vague", self.vagueLabel)
@@ -35,6 +50,8 @@ class Vue:
                         self.choixTourTitreLabel)
         self.create_box(self.start_x_position + 500, 15, self.start_x_position + 600, 65, "Vies", self.nbVieLabel)
         self.create_box(self.start_x_position + 500, 75, self.start_x_position + 600, 125, "Argent", self.argentLabel)
+
+
         self.create_tower_box(self.start_x_position + 160, 43, self.start_x_position + 240, 113, "purple",
                               self.tower1Label)
         self.create_tower_box(self.start_x_position + 260, 43, self.start_x_position + 340, 113, "yellow",
@@ -65,3 +82,6 @@ class Vue:
 
     def afficherChrono(self, time_left):
         self.chronoLabel.config(text=str(time_left))
+        print("afficher chrono: timeleft", time_left)
+
+
