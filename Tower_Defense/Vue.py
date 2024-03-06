@@ -15,6 +15,7 @@ class Vue:
         self.create_boxes()
         self.create_troncons()
 
+
     def create_canvases(self):
         # 18 rangées en hauteur, 32 largeur: 18*40 = 720? #ancien: 432
         self.canvas1 = Canvas(self.root, bg='white', height=720, width=1280)
@@ -93,13 +94,13 @@ class Vue:
         y0 = y - r
         x1 = x + r
         y1 = y + r
-        return canvas.create_oval(x0, y0, x1, y1, fill = self.modele.creeps.couleur, tags = ("creep",))
+        return canvas.create_oval(x0, y0, x1, y1, fill = "red3", tags = ("creep",))
 
     #Affichage des Creeps actifs sur le canvas. Utilise la méthode create_circle
 
     def afficher_Creeps(self, x, y):
-        for i in self.modele.creeps_actifs:
-            self.create_circle(x, y, 15, self.canvas1)
+        #for i in self.modele.creeps_actifs:
+            self.create_circle(x, y, 20, self.canvas1)
 
 
     def create_troncons(self):
