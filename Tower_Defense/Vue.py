@@ -14,6 +14,7 @@ class Vue:
         self.create_labels()
         self.create_boxes()
         self.create_troncons()
+        self.create_events_amelioraton()
 
     def create_canvases(self):
         # 18 rangées en hauteur, 32 largeur: 18*40 = 720? #ancien: 432
@@ -56,12 +57,18 @@ class Vue:
         self.create_box(self.start_x_position + 500, 15, self.start_x_position + 600, 65, "Vies", self.nbVieLabel)
         self.create_box(self.start_x_position + 500, 75, self.start_x_position + 600, 125, "Argent", self.argentLabel)
 
+
         self.create_tower_box(self.start_x_position + 160, 43, self.start_x_position + 240, 113, "purple",
                               self.tower1Label)
+
+
         self.create_tower_box(self.start_x_position + 260, 43, self.start_x_position + 340, 113, "yellow",
                               self.tower2Label)
         self.create_tower_box(self.start_x_position + 360, 43, self.start_x_position + 440, 113, "green",
                               self.tower3Label)
+
+
+
 
     def create_box(self, x1, y1, x2, y2, title_text, value_widget):
         padding = 20  # espace entre titre et box
@@ -89,6 +96,7 @@ class Vue:
         print("afficher chrono: timeleft", time_left)
 
     def create_troncons(self):
+        # A AMELIORER
         start1_coords = self.modele.dict_rect['start1']
         end1_coords = self.modele.dict_rect['end1']
 
@@ -134,4 +142,13 @@ class Vue:
 
         self.canvas1.create_rectangle(start8_coords, end8_coords,
                                       fill=self.modele.troncon_couleur, tags=("troncon",))
+
+    def create_events_amelioraton(self):
+        # attacher event sur le label tower1:
+        self.tower1Label.bind("<Button-1>", self.create_box_amelioration)
+
+    def create_box_amelioration(self, event):
+        self.create_box(self.start_x_position + 150, 15, self.start_x_position + 450, 125, "Amélioration des tours",
+                        self.choixTourTitreLabel)
+
 
