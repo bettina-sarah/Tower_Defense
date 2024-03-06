@@ -14,15 +14,15 @@ class Modele():
         self.argent = 200
         self.nbVies = 20
         self.vague = 1
-        self.dict_rect = {      #coordonnées troncons
-            'start1': (10, 10), 'end1': (60, 60), # end avec start meme coordo?
-            'start2': (70, 70), 'end2': (130, 130),
-            'start3': (140, 140), 'end3': (200, 200),
-            'start4': (210, 210), 'end4': (270, 270),
+        self.dict_rect = {      #coordonnées troncons coin haut gauche & bas droite
+            'start1': (160, 0), 'end1': (240, 640), # end avec start meme coordo?
+            'start2': (240, 560), 'end2': (480, 640),
+            'start3': (400, 120), 'end3': (480, 560),
+            'start4': (480, 120), 'end4': (1160, 270),
             'start5': (280, 280), 'end5': (340, 340),
             'start6': (350, 350), 'end6': (410, 410)
         }
-        self.troncon_couleur = "red"
+        self.troncon_couleur = "sienna3"
         self.pos_chateau = None
         self.nbCreeps = 20
         self.creeps_inactifs = []

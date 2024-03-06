@@ -1,6 +1,8 @@
 import tkinter as tk
 
 from tkinter import *
+
+
 class Vue:
     def __init__(self, parent, modele):
         self.parent = parent
@@ -26,7 +28,7 @@ class Vue:
                                     command=self.parent.commencer_partie)
 
         self.btn_commencer.pack(side=tk.LEFT, padx=100, pady=(20, 20),
-                                     anchor='n')  # Align buttons to the left with some padding
+                                anchor='n')  # Align buttons to the left with some padding
 
     def create_labels(self):
         # Le contenu modifiable de chaque boite de linterface joueur
@@ -34,7 +36,8 @@ class Vue:
         self.vagueLabel = Label(self.canvas2, text=str(self.modele.vague), font=('Helvetica', 11), bg='white', width=5)
         self.choixTourTitreLabel = Label(self.canvas2, text="", font=('Helvetica', 11), bg='yellow', width=0)
         self.nbVieLabel = Label(self.root, text=str(self.modele.nbVies), font=('Helvetica', 11), bg='white', width=5)
-        self.argentLabel = Label(self.canvas2, text=str(self.modele.argent), font=('Helvetica', 11), bg='white', width=5)
+        self.argentLabel = Label(self.canvas2, text=str(self.modele.argent), font=('Helvetica', 11), bg='white',
+                                 width=5)
         self.tower1Label = Label(self.root, text="Projectile", font=('Helvetica', 11), bg='purple', width=8)
         self.tower2Label = Label(self.root, text="Éclair", font=('Helvetica', 11), bg='yellow', width=8)
         self.tower3Label = Label(self.root, text="Poison", font=('Helvetica', 11), bg='green', width=8)
@@ -52,7 +55,6 @@ class Vue:
                         self.choixTourTitreLabel)
         self.create_box(self.start_x_position + 500, 15, self.start_x_position + 600, 65, "Vies", self.nbVieLabel)
         self.create_box(self.start_x_position + 500, 75, self.start_x_position + 600, 125, "Argent", self.argentLabel)
-
 
         self.create_tower_box(self.start_x_position + 160, 43, self.start_x_position + 240, 113, "purple",
                               self.tower1Label)
@@ -87,11 +89,31 @@ class Vue:
         print("afficher chrono: timeleft", time_left)
 
     def create_troncons(self):
-        # self.canvas1.create_rectangle(self.modele.carre.posX, self.modele.carre.posY,
-        #                                self.modele.carre.posX + self.modele.carre.taille,
-        #                                self.modele.carre.posY + self.modele.carre.taille,
-        #                                fill=self.modele.troncon_couleur,
-        #                                tags=("troncon1",))
-        pass
+        start1_coords = self.modele.dict_rect['start1']
+        end1_coords = self.modele.dict_rect['end1']
 
+        self.canvas1.create_rectangle(start1_coords, end1_coords,
+                                      fill=self.modele.troncon_couleur, tags=("troncon",))
 
+        start2_coords = self.modele.dict_rect['start2']
+        end2_coords = self.modele.dict_rect['end2']
+        self.canvas1.create_rectangle(start2_coords, end2_coords,
+                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+
+        start3_coords = self.modele.dict_rect['start3']
+        end3_coords = self.modele.dict_rect['end3']
+
+        self.canvas1.create_rectangle(start3_coords, end3_coords,
+                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+
+        start4_coords = self.modele.dict_rect['start4']
+        end4_coords = self.modele.dict_rect['end4']
+
+        self.canvas1.create_rectangle(start4_coords, end4_coords,
+                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+
+        start5_coords = self.modele.dict_rect['start5']
+        end5_coords = self.modele.dict_rect['end5']
+
+        self.canvas1.create_rectangle(start5_coords, end5_coords,
+                                      fill=self.modele.troncon_couleur, tags=("troncon",))
