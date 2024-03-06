@@ -15,6 +15,8 @@ class Vue:
         self.create_boxes()
         self.create_troncons()
         self.create_events_amelioraton()
+        self.create_chateau_canvas()
+
 
     def create_canvases(self):
         # 18 rangées en hauteur, 32 largeur: 18*40 = 720? #ancien: 432
@@ -95,6 +97,20 @@ class Vue:
         self.chronoLabel.config(text=str(time_left))
         print("afficher chrono: timeleft", time_left)
 
+    def create_circle(self, x, y, r, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
+        x0 = x - r
+        y0 = y - r
+        x1 = x + r
+        y1 = y + r
+        return canvas.create_oval(x0, y0, x1, y1, fill = "red3", tags = ("creep",))
+
+    #Affichage des Creeps actifs sur le canvas. Utilise la méthode create_circle
+
+    def afficher_Creeps(self, x, y):
+        #for i in self.modele.creeps_actifs:
+            self.create_circle(x, y, 20, self.canvas1)
+
+
     def create_troncons(self):
         # A AMELIORER
         start1_coords = self.modele.dict_rect['start1']
@@ -125,6 +141,7 @@ class Vue:
 
         self.canvas1.create_rectangle(start5_coords, end5_coords,
                                       fill=self.modele.troncon_couleur, tags=("troncon",))
+
         start6_coords = self.modele.dict_rect['start6']
         end6_coords = self.modele.dict_rect['end6']
 
@@ -150,5 +167,43 @@ class Vue:
     def create_box_amelioration(self, event):
         self.create_box(self.start_x_position + 150, 15, self.start_x_position + 450, 125, "Amélioration des tours",
                         self.choixTourTitreLabel)
+
+    def create_chateau_canvas(self):
+       coinG_coords = self.modele.dict_pos_chateau['coinG']
+       finG_coords = self.modele.dict_pos_chateau['finG']
+       self.canvas1.create_rectangle(coinG_coords, finG_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+
+       coinD_coords = self.modele.dict_pos_chateau['coinD']
+       finD_coords = self.modele.dict_pos_chateau['finD']
+       self.canvas1.create_rectangle(coinD_coords,finD_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+       blocHG_coords = self.modele.dict_pos_chateau['blocHG']
+       finHG_coords = self.modele.dict_pos_chateau['finHG']
+       self.canvas1.create_rectangle(blocHG_coords,finHG_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+       blocHD_coords = self.modele.dict_pos_chateau['blocHD']
+       finHD_coords = self.modele.dict_pos_chateau['finHD']
+       self.canvas1.create_rectangle(blocHD_coords,finHD_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+       blocMG_coords = self.modele.dict_pos_chateau['blocMG']
+       finMG_coords = self.modele.dict_pos_chateau['finMG']
+       self.canvas1.create_rectangle(blocMG_coords,finMG_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+
+       blocMD_coords = self.modele.dict_pos_chateau['blocMD']
+       finMD_coords = self.modele.dict_pos_chateau['finMD']
+       self.canvas1.create_rectangle(blocMD_coords,finMD_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+       blocBG_coords = self.modele.dict_pos_chateau['blocBG']
+       finBG_coords = self.modele.dict_pos_chateau['finBG']
+       self.canvas1.create_rectangle(blocBG_coords,finBG_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+
+       blocBD_coords = self.modele.dict_pos_chateau['blocBD']
+       finBD_coords = self.modele.dict_pos_chateau['finBD']
+
+       self.canvas1.create_rectangle(blocBD_coords,finBD_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
 
 
