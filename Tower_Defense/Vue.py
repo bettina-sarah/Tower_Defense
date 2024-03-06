@@ -11,13 +11,15 @@ class Vue:
         self.create_canvases()
         self.create_labels()
         self.create_boxes()
+        self.create_troncons()
 
     def create_canvases(self):
-        # frame?
-        self.canvas1 = Canvas(self.root, bg='white', height=432, width=1280)
+        # 18 rangées en hauteur, 32 largeur: 18*40 = 720? #ancien: 432
+        self.canvas1 = Canvas(self.root, bg='white', height=720, width=1280)
         self.canvas1.pack(side=TOP, fill=BOTH, expand=True)
 
-        self.canvas2 = Canvas(self.root, bg='black', height=144, width=1280)
+        # 6 rangées en bas, 32 largeur ... 6*40 = 240 (canvas1+canvas2 = 960) #ancien: 144
+        self.canvas2 = Canvas(self.root, bg='black', height=240, width=1280)
         self.canvas2.pack(side=TOP, fill=BOTH, expand=True)
 
         self.btn_commencer = Button(self.canvas2, text="Commencer", font=('Helvetica', 11),
@@ -83,5 +85,13 @@ class Vue:
     def afficherChrono(self, time_left):
         self.chronoLabel.config(text=str(time_left))
         print("afficher chrono: timeleft", time_left)
+
+    def create_troncons(self):
+        # self.canvas1.create_rectangle(self.modele.carre.posX, self.modele.carre.posY,
+        #                                self.modele.carre.posX + self.modele.carre.taille,
+        #                                self.modele.carre.posY + self.modele.carre.taille,
+        #                                fill=self.modele.troncon_couleur,
+        #                                tags=("troncon1",))
+        pass
 
 
