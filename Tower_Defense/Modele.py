@@ -18,9 +18,12 @@ class Modele():
             'start1': (160, 0), 'end1': (240, 640), # end avec start meme coordo?
             'start2': (240, 560), 'end2': (480, 640),
             'start3': (400, 120), 'end3': (480, 560),
-            'start4': (480, 120), 'end4': (1160, 270),
-            'start5': (280, 280), 'end5': (340, 340),
-            'start6': (350, 350), 'end6': (410, 410)
+            'start4': (480, 120), 'end4': (1160, 200),
+            'start5': (1080, 200), 'end5': (1160, 400),
+            'start6': (720, 320), 'end6': (1080, 400),
+            'start7': (720, 400), 'end7': (800, 640),
+            'start8': (800, 560), 'end8': (1120, 640),
+
         }
         self.troncon_couleur = "sienna3"
         self.pos_chateau = None

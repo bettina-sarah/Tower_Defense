@@ -117,3 +117,21 @@ class Vue:
 
         self.canvas1.create_rectangle(start5_coords, end5_coords,
                                       fill=self.modele.troncon_couleur, tags=("troncon",))
+        start6_coords = self.modele.dict_rect['start6']
+        end6_coords = self.modele.dict_rect['end6']
+
+        self.canvas1.create_rectangle(start6_coords, end6_coords,
+                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+
+        start7_coords = self.modele.dict_rect['start7']
+        end7_coords = self.modele.dict_rect['end7']
+
+        self.canvas1.create_rectangle(start7_coords, end7_coords,
+                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+
+        start8_coords = self.modele.dict_rect['start8']
+        end8_coords = self.modele.dict_rect['end8']
+
+        self.canvas1.create_rectangle(start8_coords, end8_coords,
+                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+
