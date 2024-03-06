@@ -2,6 +2,7 @@ import os.path
 import random
 
 import time
+import Creeps as Creeps
 from datetime import datetime
 
 
@@ -27,8 +28,26 @@ class Modele():
         self.creeps_inactifs = []
         self.creeps_actifs = []
 
-    def commencer_partie(self):
+    def commencer_niveau(self):
         pass
+
+    def creer_creeps(self):    #Méthode Création des Creeps pour le niveau
+        for i in range(self.nbCreeps):
+            v = self.vague *5 #************calcul arbitraire de vitesse, À TESTER******************
+            HP = self.vague * 20 #************calcul arbitraire de point de Vie, À TESTER******************
+            c = Creeps(self, HP, v, i)
+            self.creeps_inactifs.append(c)
+
+#Méthode pour supprimer les creeps
+    def suppression_creeps(self, ID):
+        for creeps in self.creeps_actifs:
+            if ID == creeps.id:
+                self.creeps_actifs.remove(creeps)
+
+
+
+
+
 
 
 

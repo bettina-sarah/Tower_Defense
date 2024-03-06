@@ -13,7 +13,7 @@ class Controleur():
             if not self.modele.chronoStarted:
                 print("commencer partie - chrono")
                 self.start_chrono()
-            #self.animer_jeu()
+            self.animer_jeu()
 
         else:  # si pas en vie
             self.start_new_game()
@@ -38,6 +38,7 @@ class Controleur():
     def animer_jeu(self):
         #creer creeps & deplacement
         #vue affiche creeps
+        self.modele.commencer_niveau(self)
         if self.modele.enVie:
             self.vue.root.after(50, self.animer_jeu)
         else:

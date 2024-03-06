@@ -84,4 +84,19 @@ class Vue:
         self.chronoLabel.config(text=str(time_left))
         print("afficher chrono: timeleft", time_left)
 
+    def create_circle(self, x, y, r, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
+        x0 = x - r
+        y0 = y - r
+        x1 = x + r
+        y1 = y + r
+        return canvas.create_oval(x0, y0, x1, y1, fill = self.modele.creeps.couleur, tags = ("creep",))
+
+    #Affichage des Creeps actifs sur le canvas. Utilise la méthode create_circle
+
+    def afficher_Creeps(self, x, y):
+        for i in self.modele.creeps_actifs:
+            self.create_circle(x, y, 15, self.canvas1)
+
+
+
 
