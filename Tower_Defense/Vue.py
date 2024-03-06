@@ -14,6 +14,7 @@ class Vue:
         self.create_labels()
         self.create_boxes()
         self.create_troncons()
+        self.create_chateau_canvas()
 
     def create_canvases(self):
         # 18 rangées en hauteur, 32 largeur: 18*40 = 720? #ancien: 432
@@ -117,3 +118,42 @@ class Vue:
 
         self.canvas1.create_rectangle(start5_coords, end5_coords,
                                       fill=self.modele.troncon_couleur, tags=("troncon",))
+
+    def create_chateau_canvas(self):
+       coinG_coords = self.modele.dict_pos_chateau['coinG']
+       finG_coords = self.modele.dict_pos_chateau['finG']
+       self.canvas1.create_rectangle(coinG_coords, finG_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+
+       coinD_coords = self.modele.dict_pos_chateau['coinD']
+       finD_coords = self.modele.dict_pos_chateau['finD']
+       self.canvas1.create_rectangle(coinD_coords,finD_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+       blocHG_coords = self.modele.dict_pos_chateau['blocHG']
+       finHG_coords = self.modele.dict_pos_chateau['finHG']
+       self.canvas1.create_rectangle(blocHG_coords,finHG_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+       blocHD_coords = self.modele.dict_pos_chateau['blocHD']
+       finHD_coords = self.modele.dict_pos_chateau['finHD']
+       self.canvas1.create_rectangle(blocHD_coords,finHD_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+       blocMG_coords = self.modele.dict_pos_chateau['blocMG']
+       finMG_coords = self.modele.dict_pos_chateau['finMG']
+       self.canvas1.create_rectangle(blocMG_coords,finMG_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+
+       blocMD_coords = self.modele.dict_pos_chateau['blocMD']
+       finMD_coords = self.modele.dict_pos_chateau['finMD']
+       self.canvas1.create_rectangle(blocMD_coords,finMD_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+       blocBG_coords = self.modele.dict_pos_chateau['blocBG']
+       finBG_coords = self.modele.dict_pos_chateau['finBG']
+       self.canvas1.create_rectangle(blocBG_coords,finBG_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+
+       blocBD_coords = self.modele.dict_pos_chateau['blocBD']
+       finBD_coords = self.modele.dict_pos_chateau['finBD']
+
+       self.canvas1.create_rectangle(blocBD_coords,finBD_coords,
+                                     fill=self.modele.chateau_couleur, tags=("troncon",))
+

@@ -23,7 +23,25 @@ class Modele():
             'start6': (350, 350), 'end6': (410, 410)
         }
         self.troncon_couleur = "sienna3"
-        self.pos_chateau = None
+        self.chateau_couleur = "DarkOrchid4"
+        self.dict_pos_chateau = {
+            'coinG': (1080, 480),
+            'coinD': (1200, 480),
+            'blocHG': (1120, 520),
+            'blocHD': (1160, 520),
+            'blocMG': (1120, 560),
+            'blocMD': (1160, 560),
+            'blocBG': (1120, 600),
+            'blocBD': (1160, 600),
+            'finG': (1120, 520),
+            'finD': (1240, 520),
+            'finHG': (1160, 560),
+            'finHD': (1200, 560),
+            'finMG': (1160, 600),
+            'finMD': (1200, 600),
+            'finBG': (1160, 640),
+            'finBD': (1200, 640)
+                }
         self.nbCreeps = 20
         self.creeps_inactifs = []
         self.creeps_actifs = []
