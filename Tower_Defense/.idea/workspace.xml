@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a61e30d9-56e8-4a97-ab13-9b386fcf2ea2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.~lock.2024_01_mandat_TD_leger.docx#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modele.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/donnee/score.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sv_ttk/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sv_ttk/py.typed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sv_ttk/sv.tcl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/dark.tcl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/light.tcl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/sprites_dark.tcl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/sprites_light.tcl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/spritesheet_dark.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/spritesheet_light.png" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2dNbs3v5wPgF4vFq61WUvNoN65B" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Main.executor": "Run",
+    "Python.Vue.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/GenieLog1/TD/Tower_Defense/Tower_Defense"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a61e30d9-56e8-4a97-ab13-9b386fcf2ea2" name="Changes" comment="" />
+      <created>1709851686239</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709851686239</updated>
+    </task>
+    <servers />
+  </component>
+</project>

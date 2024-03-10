@@ -8,30 +8,54 @@ class Vue:
         self.parent = parent
         self.modele = modele
         self.root = Tk()
-        self.root.geometry("1280x960")  # 32x24 (x40)
+        self.root.geometry("1260x960")  # 32x24 (x40) 24 = hauteur 32 = largeur
         self.window_width = 1280
-        self.create_canvases()
+        self.window_heigth = 960
+        # self.create_canvases()
+        total_height = 960
+        canvas1_height = (3 / 4) * total_height # 3/4 du ratio
+        canvas2_height = total_height - canvas1_height  # 1/4
+
+        self.create_canvases(canvas1_height, canvas2_height)
         self.create_labels()
         self.create_boxes()
         self.create_troncons()
         self.create_events_amelioraton()
         self.create_chateau_canvas()
 
+    def create_canvases(self, canvas1_height, canvas2_height):
 
-    def create_canvases(self):
-        # 18 rangées en hauteur, 32 largeur: 18*40 = 720? #ancien: 432
-        self.canvas1 = Canvas(self.root, bg='white', height=720, width=1280)
-        self.canvas1.pack(side=TOP, fill=BOTH, expand=True)
+        self.canvas1 = tk.Canvas(self.root, bg='white', height=canvas1_height, width=1280)
+        self.canvas1.grid(row=0, column=0, sticky="nsew")
 
-        # 6 rangées en bas, 32 largeur ... 6*40 = 240 (canvas1+canvas2 = 960) #ancien: 144
-        self.canvas2 = Canvas(self.root, bg='black', height=240, width=1280)
-        self.canvas2.pack(side=TOP, fill=BOTH, expand=True)
 
-        self.btn_commencer = Button(self.canvas2, text="Commencer", font=('Helvetica', 11),
-                                    command=self.parent.commencer_partie)
+        self.canvas2 = tk.Canvas(self.root, bg='black', height=canvas2_height, width=1280)
+        self.canvas2.grid(row=1, column=0, sticky="nsew") # nord sud est ouest donc il spread pour toucher a tous les bords du grid cell
 
-        self.btn_commencer.pack(side=tk.LEFT, padx=100, pady=(20, 20),
-                                anchor='n')  # Align buttons to the left with some padding
+
+        self.root.grid_rowconfigure(0, weight=3)  # Poids a chaque canvas
+        self.root.grid_rowconfigure(1, weight=1)
+
+    # def create_canvases(self):
+    #
+    #     # 18 rangées en hauteur, 32 largeur: 18*40 = 720? #ancien: 432
+    #     self.canvas1 = Canvas(self.root, bg='white', height=720, width=1280)
+    #     self.canvas1.pack(side=TOP, fill=BOTH, expand=True)
+    #     # self.canvas1.pack()
+    #     # self.canvas1.place(x=0,y=0)
+    #
+    #     # 6 rangées en bas, 32 largeur ... 6*40 = 240 (canvas1+canvas2 = 960) #ancien: 144
+    #     self.canvas2 = Canvas(self.root, bg='black', height=240, width=1280)
+    #     self.canvas2.pack(side=TOP, fill=BOTH, expand=True)
+    #     # self.canvas2.pack()
+    #     # self.canvas2.place(x=0, y=220)
+    #
+    #     self.btn_commencer = Button(self.canvas2, text="Commencer", font=('Helvetica', 11),
+    #                                 command=self.parent.commencer_partie)
+    #
+    #     self.btn_commencer.pack(side=tk.LEFT, padx=100, pady=(20, 20),
+    #                             anchor='n')  # Align buttons to the left with some padding
+    #
 
     def create_labels(self):
         # Le contenu modifiable de chaque boite de linterface joueur
@@ -117,48 +141,48 @@ class Vue:
         end1_coords = self.modele.dict_rect['end1']
 
         self.canvas1.create_rectangle(start1_coords, end1_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+                                      fill=self.modele.troncon_couleur, tags=("troncon1",))
 
         start2_coords = self.modele.dict_rect['start2']
         end2_coords = self.modele.dict_rect['end2']
         self.canvas1.create_rectangle(start2_coords, end2_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+                                      fill=self.modele.troncon_couleur, tags=("troncon2",))
 
         start3_coords = self.modele.dict_rect['start3']
         end3_coords = self.modele.dict_rect['end3']
 
         self.canvas1.create_rectangle(start3_coords, end3_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+                                      fill=self.modele.troncon_couleur, tags=("troncon3",))
 
         start4_coords = self.modele.dict_rect['start4']
         end4_coords = self.modele.dict_rect['end4']
 
         self.canvas1.create_rectangle(start4_coords, end4_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+                                      fill=self.modele.troncon_couleur, tags=("troncon4",))
 
         start5_coords = self.modele.dict_rect['start5']
         end5_coords = self.modele.dict_rect['end5']
 
         self.canvas1.create_rectangle(start5_coords, end5_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+                                      fill=self.modele.troncon_couleur, tags=("troncon5",))
 
         start6_coords = self.modele.dict_rect['start6']
         end6_coords = self.modele.dict_rect['end6']
 
         self.canvas1.create_rectangle(start6_coords, end6_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+                                      fill=self.modele.troncon_couleur, tags=("troncon6",))
 
         start7_coords = self.modele.dict_rect['start7']
         end7_coords = self.modele.dict_rect['end7']
 
         self.canvas1.create_rectangle(start7_coords, end7_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+                                      fill=self.modele.troncon_couleur, tags=("troncon7",))
 
         start8_coords = self.modele.dict_rect['start8']
         end8_coords = self.modele.dict_rect['end8']
 
         self.canvas1.create_rectangle(start8_coords, end8_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon",))
+                                      fill=self.modele.troncon_couleur, tags=("troncon8",))
 
     def create_events_amelioraton(self):
         # attacher event sur le label tower1:
@@ -169,41 +193,41 @@ class Vue:
                         self.choixTourTitreLabel)
 
     def create_chateau_canvas(self):
-       coinG_coords = self.modele.dict_pos_chateau['coinG']
-       finG_coords = self.modele.dict_pos_chateau['finG']
-       self.canvas1.create_rectangle(coinG_coords, finG_coords,
-                                     fill=self.modele.chateau_couleur, tags=("troncon",))
-
-       coinD_coords = self.modele.dict_pos_chateau['coinD']
-       finD_coords = self.modele.dict_pos_chateau['finD']
-       self.canvas1.create_rectangle(coinD_coords,finD_coords,
-                                     fill=self.modele.chateau_couleur, tags=("troncon",))
-       blocHG_coords = self.modele.dict_pos_chateau['blocHG']
-       finHG_coords = self.modele.dict_pos_chateau['finHG']
-       self.canvas1.create_rectangle(blocHG_coords,finHG_coords,
-                                     fill=self.modele.chateau_couleur, tags=("troncon",))
-       blocHD_coords = self.modele.dict_pos_chateau['blocHD']
-       finHD_coords = self.modele.dict_pos_chateau['finHD']
-       self.canvas1.create_rectangle(blocHD_coords,finHD_coords,
-                                     fill=self.modele.chateau_couleur, tags=("troncon",))
-       blocMG_coords = self.modele.dict_pos_chateau['blocMG']
-       finMG_coords = self.modele.dict_pos_chateau['finMG']
-       self.canvas1.create_rectangle(blocMG_coords,finMG_coords,
-                                     fill=self.modele.chateau_couleur, tags=("troncon",))
-
-       blocMD_coords = self.modele.dict_pos_chateau['blocMD']
-       finMD_coords = self.modele.dict_pos_chateau['finMD']
-       self.canvas1.create_rectangle(blocMD_coords,finMD_coords,
-                                     fill=self.modele.chateau_couleur, tags=("troncon",))
-       blocBG_coords = self.modele.dict_pos_chateau['blocBG']
-       finBG_coords = self.modele.dict_pos_chateau['finBG']
-       self.canvas1.create_rectangle(blocBG_coords,finBG_coords,
-                                     fill=self.modele.chateau_couleur, tags=("troncon",))
-
-       blocBD_coords = self.modele.dict_pos_chateau['blocBD']
-       finBD_coords = self.modele.dict_pos_chateau['finBD']
-
-       self.canvas1.create_rectangle(blocBD_coords,finBD_coords,
-                                     fill=self.modele.chateau_couleur, tags=("troncon",))
-
+       # coinG_coords = self.modele.dict_pos_chateau['coinG']
+       # finG_coords = self.modele.dict_pos_chateau['finG']
+       # self.canvas1.create_rectangle(coinG_coords, finG_coords,
+       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
+       #
+       # coinD_coords = self.modele.dict_pos_chateau['coinD']
+       # finD_coords = self.modele.dict_pos_chateau['finD']
+       # self.canvas1.create_rectangle(coinD_coords,finD_coords,
+       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
+       # blocHG_coords = self.modele.dict_pos_chateau['blocHG']
+       # finHG_coords = self.modele.dict_pos_chateau['finHG']
+       # self.canvas1.create_rectangle(blocHG_coords,finHG_coords,
+       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
+       # blocHD_coords = self.modele.dict_pos_chateau['blocHD']
+       # finHD_coords = self.modele.dict_pos_chateau['finHD']
+       # self.canvas1.create_rectangle(blocHD_coords,finHD_coords,
+       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
+       # blocMG_coords = self.modele.dict_pos_chateau['blocMG']
+       # finMG_coords = self.modele.dict_pos_chateau['finMG']
+       # self.canvas1.create_rectangle(blocMG_coords,finMG_coords,
+       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
+       #
+       # blocMD_coords = self.modele.dict_pos_chateau['blocMD']
+       # finMD_coords = self.modele.dict_pos_chateau['finMD']
+       # self.canvas1.create_rectangle(blocMD_coords,finMD_coords,
+       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
+       # blocBG_coords = self.modele.dict_pos_chateau['blocBG']
+       # finBG_coords = self.modele.dict_pos_chateau['finBG']
+       # self.canvas1.create_rectangle(blocBG_coords,finBG_coords,
+       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
+       #
+       # blocBD_coords = self.modele.dict_pos_chateau['blocBD']
+       # finBD_coords = self.modele.dict_pos_chateau['finBD']
+       #
+       # self.canvas1.create_rectangle(blocBD_coords,finBD_coords,
+       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
+        self.canvas1.create_rectangle(894,438,972,528,fill=self.modele.chateau_couleur)
 
