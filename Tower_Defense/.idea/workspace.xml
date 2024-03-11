@@ -5,50 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a61e30d9-56e8-4a97-ab13-9b386fcf2ea2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.~lock.2024_01_mandat_TD_leger.docx#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modele.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modele.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donnee/score.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/py.typed" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/sv.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/dark.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/light.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/sprites_dark.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/sprites_light.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/spritesheet_dark.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/spritesheet_light.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projectile.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projectile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tours.py" beforeDir="false" afterPath="$PROJECT_DIR$/TourProjectile.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
-}</component>
   <component name="ProjectId" id="2dNbs3v5wPgF4vFq61WUvNoN65B" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Main.executor": "Run",
-    "Python.Vue.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/GenieLog1/TD/Tower_Defense/Tower_Defense"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="X:/Genie logiciel I/Carre_rouge/Carre_rouge" />
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -66,5 +53,16 @@
       <updated>1709851686239</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

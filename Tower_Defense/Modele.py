@@ -6,6 +6,10 @@ import time
 from Creeps import Creeps
 from datetime import datetime
 
+from TourProjectile import *
+from TourEclair import *
+from TourPoison import *
+
 
 class Modele():
     def __init__(self, parent):
@@ -62,6 +66,7 @@ class Modele():
         self.nbCreeps = 20
         self.creeps_inactifs = []
         self.creeps_actifs = []
+        self.tours = []
         self.creer_creeps()
 
 
