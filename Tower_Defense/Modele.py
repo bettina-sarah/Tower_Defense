@@ -5,10 +5,7 @@ import time
 #import Creeps as Creeps
 from Creeps import Creeps
 from datetime import datetime
-
-from TourProjectile import *
-from TourEclair import *
-from TourPoison import *
+from Tour import *
 
 
 class Modele():
@@ -92,9 +89,16 @@ class Modele():
 
     def verifier_collision_tours(self):
         for tour in self.tours:
-            tour.verifier_collision_creep()
+            for creep in self.creeps_actifs:
+                tour.verifier_collision_creep(creep)
 
-    def creer_tours(self):
+    def creer_tours(self, type, niveau, coordos, ID):       #coordos = x & y
+        # appelé par le deposement d'une tour sur le canvas dans Vue
+        #unpack les coordos:
+        x, y = coordos
+        t = Tour(self, type, x, y, niveau, ID)
+        self.tours.append(t)
+
 
 
 
