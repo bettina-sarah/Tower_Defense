@@ -90,6 +90,17 @@ class Modele():
                 self.creeps_actifs.remove(creeps)
 
 
+    def verifier_collision_tours(self):
+        for tour in self.tours:
+            tour.verifier_collision_creep()
+
+    def creer_tours(self):
+
+
+
+
+
+
 
 
 

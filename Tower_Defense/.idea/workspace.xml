@@ -7,8 +7,6 @@
     <list default="true" id="a61e30d9-56e8-4a97-ab13-9b386fcf2ea2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modele.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modele.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectile.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projectile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tours.py" beforeDir="false" afterPath="$PROJECT_DIR$/TourProjectile.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +33,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="X:/Genie logiciel I/Carre_rouge/Carre_rouge" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
