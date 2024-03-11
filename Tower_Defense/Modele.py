@@ -3,7 +3,7 @@ import random
 
 import time
 #import Creeps as Creeps
-from Creeps import Creeps
+from Creep import Creep
 from datetime import datetime
 from Tour import *
 
@@ -16,26 +16,17 @@ class Modele():
         self.chrono = 10
         self.argent = 200
         self.nbVies = 20
-        self.vague = 1
-        # self.dict_rect = {      #coordonnées troncons coin haut gauche & bas droite
-        #     'start1': (160, 0), 'end1': (240, 640), # end avec start meme coordo?
-        #     'start2': (240, 560), 'end2': (480, 640),
-        #     'start3': (400, 120), 'end3': (480, 560),
-        #     'start4': (480, 120), 'end4': (1160, 200),
-        #     'start5': (1080, 200), 'end5': (1160, 400),
-        #     'start6': (720, 320), 'end6': (1080, 400),
-        #     'start7': (720, 400), 'end7': (800, 640),
-        #     'start8': (800, 560), 'end8': (1120, 640),
-        # }
-        self.dict_rect = {
-              'start1': (132, 0), 'end1': (198, 528),
-                'start2': (198, 462), 'end2': (396, 528),
-                'start3': (330, 99), 'end3': (396, 462),
-                'start4': (396, 99), 'end4': (957, 165),
-                'start5': (891, 165), 'end5': (957, 330),
-                'start6': (594, 264), 'end6': (891, 330),
-                'start7': (594, 330), 'end7': (660, 528),
-                'start8': (660, 462), 'end8': (924, 528),
+        self.vague = 0
+        #Chemin fait en ligne au lieu de rectangle
+        self.chemin = {
+            0: [(165, 0),   (165, 495)],
+            1: [(165, 495), (363, 495)],
+            2: [(363, 495), (363, 132)],
+            3: [(363, 132), (924, 132)],
+            4: [(924, 132), (924, 297)],
+            5: [(924, 297), (627, 297)],
+            6: [(627, 297), (627, 495)],
+            7: [(627, 495), (924, 495)],
         }
 
         self.troncon_couleur = "sienna3"
@@ -65,19 +56,17 @@ class Modele():
         self.creeps_actifs = []
         self.tours = []
         self.creer_creeps()
+        self.creer_niveau()
 
 
-    def commencer_niveau(self):
-        pass
 
     # Méthode Création des Creeps pour le niveau
-    def creer_creeps(self):
+    def creer_niveau(self):
+        self.vague += 1
         for i in range(self.nbCreeps):
             v = self.vague *5 #************calcul arbitraire de vitesse, À TESTER******************
             HP = self.vague * 20 #************calcul arbitraire de point de Vie, À TESTER******************
-            if i == 10:
-                HP = 69
-            c = Creeps(self, HP, v, i)
+            c = Creep(self, HP, v, i)
             self.creeps_inactifs.append(c)
 
 #Méthode pour supprimer les creeps

@@ -150,52 +150,57 @@ class Vue:
 
     def create_troncons(self):
         # A AMELIORER
-        start1_coords = self.modele.dict_rect['start1']
-        end1_coords = self.modele.dict_rect['end1']
+        for i in self.modele.chemin.keys():
+            start_coord = self.modele.chemin[i][0]
+            end_coord = self.modele.chemin[i][1]
+            self.canvas1.create_line(start_coord, end_coord, fill = self.modele.troncon_couleur, width =70, capstyle=tk.ROUND, tags= ("troncon"))
 
-        self.canvas1.create_rectangle(start1_coords, end1_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon1",))
-
-        start2_coords = self.modele.dict_rect['start2']
-        end2_coords = self.modele.dict_rect['end2']
-        self.canvas1.create_rectangle(start2_coords, end2_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon2",))
-
-        start3_coords = self.modele.dict_rect['start3']
-        end3_coords = self.modele.dict_rect['end3']
-
-        self.canvas1.create_rectangle(start3_coords, end3_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon3",))
-
-        start4_coords = self.modele.dict_rect['start4']
-        end4_coords = self.modele.dict_rect['end4']
-
-        self.canvas1.create_rectangle(start4_coords, end4_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon4",))
-
-        start5_coords = self.modele.dict_rect['start5']
-        end5_coords = self.modele.dict_rect['end5']
-
-        self.canvas1.create_rectangle(start5_coords, end5_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon5",))
-
-        start6_coords = self.modele.dict_rect['start6']
-        end6_coords = self.modele.dict_rect['end6']
-
-        self.canvas1.create_rectangle(start6_coords, end6_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon6",))
-
-        start7_coords = self.modele.dict_rect['start7']
-        end7_coords = self.modele.dict_rect['end7']
-
-        self.canvas1.create_rectangle(start7_coords, end7_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon7",))
-
-        start8_coords = self.modele.dict_rect['start8']
-        end8_coords = self.modele.dict_rect['end8']
-
-        self.canvas1.create_rectangle(start8_coords, end8_coords,
-                                      fill=self.modele.troncon_couleur, tags=("troncon8",))
+        # start1_coords = self.modele.dict_rect['start1']
+        # end1_coords = self.modele.dict_rect['end1']
+        #
+        # self.canvas1.create_rectangle(start1_coords, end1_coords,
+        #                               fill=self.modele.troncon_couleur, tags=("troncon1",))
+        #
+        # start2_coords = self.modele.dict_rect['start2']
+        # end2_coords = self.modele.dict_rect['end2']
+        # self.canvas1.create_rectangle(start2_coords, end2_coords,
+        #                               fill=self.modele.troncon_couleur, tags=("troncon2",))
+        #
+        # start3_coords = self.modele.dict_rect['start3']
+        # end3_coords = self.modele.dict_rect['end3']
+        #
+        # self.canvas1.create_rectangle(start3_coords, end3_coords,
+        #                               fill=self.modele.troncon_couleur, tags=("troncon3",))
+        #
+        # start4_coords = self.modele.dict_rect['start4']
+        # end4_coords = self.modele.dict_rect['end4']
+        #
+        # self.canvas1.create_rectangle(start4_coords, end4_coords,
+        #                               fill=self.modele.troncon_couleur, tags=("troncon4",))
+        #
+        # start5_coords = self.modele.dict_rect['start5']
+        # end5_coords = self.modele.dict_rect['end5']
+        #
+        # self.canvas1.create_rectangle(start5_coords, end5_coords,
+        #                               fill=self.modele.troncon_couleur, tags=("troncon5",))
+        #
+        # start6_coords = self.modele.dict_rect['start6']
+        # end6_coords = self.modele.dict_rect['end6']
+        #
+        # self.canvas1.create_rectangle(start6_coords, end6_coords,
+        #                               fill=self.modele.troncon_couleur, tags=("troncon6",))
+        #
+        # start7_coords = self.modele.dict_rect['start7']
+        # end7_coords = self.modele.dict_rect['end7']
+        #
+        # self.canvas1.create_rectangle(start7_coords, end7_coords,
+        #                               fill=self.modele.troncon_couleur, tags=("troncon7",))
+        #
+        # start8_coords = self.modele.dict_rect['start8']
+        # end8_coords = self.modele.dict_rect['end8']
+        #
+        # self.canvas1.create_rectangle(start8_coords, end8_coords,
+        #                               fill=self.modele.troncon_couleur, tags=("troncon8",))
 
     def create_events_amelioraton(self):
         # attacher event sur le label tower1:
