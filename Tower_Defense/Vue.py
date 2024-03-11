@@ -62,12 +62,21 @@ class Vue:
     def creer_menu_choix_tours(self):
         x = self.fenetre_largeur / 4
         y = self.canvas2_height / 5
-        self.boutonTour1 = Button(self.canvas2, text='Tour1', font=('Helvetica', 11), bg='white', width=5)
-        self.canvas2.create_window(x, y, anchor="center", window=self.boutonTour1)
+        self.titre_choix_tours = Label(self.canvas2, text='Choix des tours', font=('Helvetica', 11), fg='white', bg='black')
+        self.canvas2.create_window(x * 2, y/2, anchor="center", window=self.titre_choix_tours)
+        self.boutonTour1 = Button(self.canvas2, text='Tour Projectile', font=('Helvetica', 11), bg='white', width=10, height=5)
+        self.canvas2.create_window(x*1.5, y * 2, anchor="center", window=self.boutonTour1)
+        self.boutonTour1.config(bg='orange', fg='black')
+        self.boutonTour2 = Button(self.canvas2, text='Tour Eclair', font=('Helvetica', 11), bg='white', width=10,height=5)
+        self.canvas2.create_window(x*2, y * 2, anchor="center", window=self.boutonTour2)
+        self.boutonTour2.config(bg='blue', fg='black')
+        self.boutonTour3 = Button(self.canvas2, text='Tour Poison', font=('Helvetica', 11), bg='white', width=10,height=5)
+        self.canvas2.create_window(x*2.5, y * 2, anchor="center", window=self.boutonTour3)
+        self.boutonTour3.config(bg='green', fg='black')
 
     def create_canvases(self, canvas1_height, canvas2_height):
 
-        self.canvas1 = tk.Canvas(self.root, bg='blue', height=canvas1_height, width=1280)
+        self.canvas1 = tk.Canvas(self.root, bg='black', height=canvas1_height, width=1280)
         print(canvas1_height)
         #self.canvas1.grid(row=0, column=0, sticky="nsew")
 
