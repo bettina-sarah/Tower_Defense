@@ -1,4 +1,5 @@
 import Modele
+from Poison import *
 
 class Creeps():
     def __init__(self, modele, pDV, vitesse, id):
