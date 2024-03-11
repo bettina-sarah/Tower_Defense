@@ -6,22 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a61e30d9-56e8-4a97-ab13-9b386fcf2ea2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.~lock.2024_01_mandat_TD_leger.docx#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modele.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vue.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donnee/score.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/py.typed" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/sv.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/dark.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/light.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/sprites_dark.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/sprites_light.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/spritesheet_dark.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sv_ttk/theme/spritesheet_light.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,10 +31,15 @@
     "Python.Vue.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "gui-amelioration-tours",
     "last_opened_file_path": "C:/GenieLog1/TD/Tower_Defense/Tower_Defense"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\GenieLog1\TD\Tower_Defense\Tower_Defense" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

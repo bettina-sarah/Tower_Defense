@@ -8,117 +8,130 @@ class Vue:
         self.parent = parent
         self.modele = modele
         self.root = Tk()
-        self.root.geometry("1260x960")  # 32x24 (x40) 24 = hauteur 32 = largeur
-        self.window_width = 1280
-        self.window_heigth = 960
+        self.root.geometry("1280x960")  # 32x24 (x40) 24 = hauteur 32 = largeur
+        self.fenetre_largeur = 1280
+        self.fenetre_hauteur = 960
         # self.create_canvases()
         total_height = 960
-        canvas1_height = (3 / 4) * total_height # 3/4 du ratio
-        canvas2_height = total_height - canvas1_height  # 1/4
+        canvas1_height = total_height/4 * 3 # 3/4 du ratio
+        self.canvas2_height = total_height/4  # 1/4
 
-        self.create_canvases(canvas1_height, canvas2_height)
-        self.create_labels()
-        self.create_boxes()
+        self.create_canvases(canvas1_height, self.canvas2_height)
+        self.creer_infos_joueur()
+        self.creer_menu_choix_tours()
         self.create_troncons()
-        self.create_events_amelioraton()
+        # self.create_events_amelioraton()
         self.create_chateau_canvas()
+
+
+
+    def creer_infos_joueur(self):
+
+        x = self.fenetre_largeur / 4
+        y = self.canvas2_height / 5
+
+        self.chronoLabel = Label(self.canvas2, text='Chrono',font=('Helvetica', 11), bg='white', width=5)
+        self.chrono = Label(self.canvas2, text=str(self.modele.chrono), font=('Helvetica', 11),bg='white', width=5)
+        self.canvas2.create_window(x / 2,y * 1 , anchor="center", window=self.chronoLabel)
+        self.canvas2.create_window(x / 2, y * 2, anchor="center", window=self.chrono)
+
+
+
+
+
+        self.vagueLabel = Label(self.canvas2, text='Vague', font=('Helvetica', 11), bg='white', width=5)
+        self.vague = Label(self.canvas2, text=str(self.modele.vague), font=('Helvetica', 11), bg='white', width=5)
+        self.canvas2.create_window(x / 2, y * 3, anchor="center", window=self.vagueLabel)
+        self.canvas2.create_window(x / 2, y * 4, anchor="center", window=self.vague)
+
+
+        self.nbVieLabel = Label(self.canvas2, text='Vies', font=('Helvetica', 11), bg='white', width=5)
+        self.nbVie = Label(self.canvas2, text=str(self.modele.nbVies), font=('Helvetica', 11), bg='white', width=5)
+        self.canvas2.create_window(x * 3.5, y * 1, anchor="center", window=self.nbVieLabel)
+        self.canvas2.create_window(x * 3.5, y * 2, anchor="center", window=self.nbVie)
+
+
+        self.argentLabel = Label(self.canvas2, text='Argent', font=('Helvetica', 11), bg='white',
+                                 width=5)
+        self.argent = Label(self.canvas2, text=str(self.modele.argent), font=('Helvetica', 11), bg='white',
+                                 width=5)
+
+        self.canvas2.create_window(x * 3.5, y * 3, anchor="center", window=self.argentLabel)
+        self.canvas2.create_window(x * 3.5, y * 4, anchor="center", window=self.argent)
+
+    def creer_menu_choix_tours(self):
+        x = self.fenetre_largeur / 4
+        y = self.canvas2_height / 5
+        self.boutonTour1 = Button(self.canvas2, text='Tour1', font=('Helvetica', 11), bg='white', width=5)
+        self.canvas2.create_window(x, y, anchor="center", window=self.boutonTour1)
 
     def create_canvases(self, canvas1_height, canvas2_height):
 
-        self.canvas1 = tk.Canvas(self.root, bg='white', height=canvas1_height, width=1280)
-        self.canvas1.grid(row=0, column=0, sticky="nsew")
+        self.canvas1 = tk.Canvas(self.root, bg='blue', height=canvas1_height, width=1280)
+        print(canvas1_height)
+        #self.canvas1.grid(row=0, column=0, sticky="nsew")
 
 
-        self.canvas2 = tk.Canvas(self.root, bg='black', height=canvas2_height, width=1280)
-        self.canvas2.grid(row=1, column=0, sticky="nsew") # nord sud est ouest donc il spread pour toucher a tous les bords du grid cell
+        self.canvas2 = tk.Canvas(self.root, bg='red', height=canvas2_height, width=1280)
+        # self.canvas2.grid(row=1, column=0, sticky="nsew") # nord sud est ouest donc il spread pour toucher a tous les bords du grid cell
+        self.canvas1.pack()
+        self.canvas2.pack()
+
+        # self.root.grid_rowconfigure(0, weight=3)  # Poids a chaque canvas
+        # self.root.grid_rowconfigure(1, weight=1)
 
 
-        self.root.grid_rowconfigure(0, weight=3)  # Poids a chaque canvas
-        self.root.grid_rowconfigure(1, weight=1)
 
-    # def create_canvases(self):
+    # def create_boxes(self):
+    #     # Chaque widget de linterface joueur
+    #     self.create_box(self.start_x_position + 0, 15, self.start_x_position + 100, 65, "Chrono", self.chronoLabel)
+    #     self.create_box(self.start_x_position + 0, 75, self.start_x_position + 100, 125, "Vague", self.vagueLabel)
+    #     self.create_box(self.start_x_position + 150, 15, self.start_x_position + 450, 125, "Choix de tours",
+    #                     self.choixTourTitreLabel)
+    #     self.create_box(self.start_x_position + 500, 15, self.start_x_position + 600, 65, "Vies", self.nbVieLabel)
+    #     self.create_box(self.start_x_position + 500, 75, self.start_x_position + 600, 125, "Argent", self.argentLabel)
     #
-    #     # 18 rangées en hauteur, 32 largeur: 18*40 = 720? #ancien: 432
-    #     self.canvas1 = Canvas(self.root, bg='white', height=720, width=1280)
-    #     self.canvas1.pack(side=TOP, fill=BOTH, expand=True)
-    #     # self.canvas1.pack()
-    #     # self.canvas1.place(x=0,y=0)
     #
-    #     # 6 rangées en bas, 32 largeur ... 6*40 = 240 (canvas1+canvas2 = 960) #ancien: 144
-    #     self.canvas2 = Canvas(self.root, bg='black', height=240, width=1280)
-    #     self.canvas2.pack(side=TOP, fill=BOTH, expand=True)
-    #     # self.canvas2.pack()
-    #     # self.canvas2.place(x=0, y=220)
+    #     self.create_tower_box(self.start_x_position + 160, 43, self.start_x_position + 240, 113, "purple",
+    #                           self.tower1Label)
     #
-    #     self.btn_commencer = Button(self.canvas2, text="Commencer", font=('Helvetica', 11),
-    #                                 command=self.parent.commencer_partie)
     #
-    #     self.btn_commencer.pack(side=tk.LEFT, padx=100, pady=(20, 20),
-    #                             anchor='n')  # Align buttons to the left with some padding
+    #     self.create_tower_box(self.start_x_position + 260, 43, self.start_x_position + 340, 113, "yellow",
+    #                           self.tower2Label)
+    #     self.create_tower_box(self.start_x_position + 360, 43, self.start_x_position + 440, 113, "green",
+    #                           self.tower3Label)
+
+
+
+
+    # def create_box(self, x1, y1, x2, y2, title_text, value_widget):
+    #     padding = 20  # espace entre titre et box
+    #     title_height = 5  # hauteur du titre
     #
+    #     # Titre au dessus des box
+    #     # title_label = Label(self.menu_choix_tours, text=title_text, font=('Helvetica', 11), fg='white', bg='black')
+    #     title_label = Label(self.canvas2, text=title_text, font=('Helvetica', 11), fg='white', bg='black')
+    #     title_label_window = self.canvas2.create_window((x1 + x2) // 2, y1 - title_height // 2, window=title_label,
+    #                                                     anchor='n')
+    #
+    #     self.monMenuChoixTours = self.canvas2.create_window((x1 + x2) // 2, y1 - title_height // 2, window=self.menu_choix_tours, tags="menuChoixTours")
+    #     self.monMenuAmelioration = self.canvas2.create_window((x1 + x2) // 2, y1 - title_height // 2, window=self.menu_amelioration_tours, tags="menuAmeliorationTours")
+    #
+    #     # Diminue la hauteur des box relativement au padding et hauteur des titres
+    #     y1 += title_height + padding
+    #
+    #     # Cree le contour blanc de Choix de tours.
+    #     self.canvas2.create_rectangle(x1, y1, x2, y2, fill='white', outline='white')
+    #
+    #     # Place le label dans la box, au centre
+    #     self.canvas2.create_window((x1 + x2) // 2, (y1 + y2) // 2, window=value_widget)
 
-    def create_labels(self):
-        # Le contenu modifiable de chaque boite de linterface joueur
-        self.chronoLabel = Label(self.root, text=str(self.modele.chrono), font=('Helvetica', 11), bg='white', width=5)
-        self.vagueLabel = Label(self.canvas2, text=str(self.modele.vague), font=('Helvetica', 11), bg='white', width=5)
-        self.choixTourTitreLabel = Label(self.canvas2, text="", font=('Helvetica', 11), bg='yellow', width=0)
-        self.nbVieLabel = Label(self.root, text=str(self.modele.nbVies), font=('Helvetica', 11), bg='white', width=5)
-        self.argentLabel = Label(self.canvas2, text=str(self.modele.argent), font=('Helvetica', 11), bg='white',
-                                 width=5)
-        self.tower1Label = Label(self.root, text="Projectile", font=('Helvetica', 11), bg='purple', width=8)
-        self.tower2Label = Label(self.root, text="Éclair", font=('Helvetica', 11), bg='yellow', width=8)
-        self.tower3Label = Label(self.root, text="Poison", font=('Helvetica', 11), bg='green', width=8)
-
-        # La ou commencent les box de linterface joueur
-        self.collective_boxes_width = 600
-        self.margin = (self.window_width - self.collective_boxes_width) / 2  # pour centrer les box de linterface joueur
-        self.start_x_position = self.margin
-
-    def create_boxes(self):
-        # Chaque widget de linterface joueur
-        self.create_box(self.start_x_position + 0, 15, self.start_x_position + 100, 65, "Chrono", self.chronoLabel)
-        self.create_box(self.start_x_position + 0, 75, self.start_x_position + 100, 125, "Vague", self.vagueLabel)
-        self.create_box(self.start_x_position + 150, 15, self.start_x_position + 450, 125, "Choix de tours",
-                        self.choixTourTitreLabel)
-        self.create_box(self.start_x_position + 500, 15, self.start_x_position + 600, 65, "Vies", self.nbVieLabel)
-        self.create_box(self.start_x_position + 500, 75, self.start_x_position + 600, 125, "Argent", self.argentLabel)
-
-
-        self.create_tower_box(self.start_x_position + 160, 43, self.start_x_position + 240, 113, "purple",
-                              self.tower1Label)
-
-
-        self.create_tower_box(self.start_x_position + 260, 43, self.start_x_position + 340, 113, "yellow",
-                              self.tower2Label)
-        self.create_tower_box(self.start_x_position + 360, 43, self.start_x_position + 440, 113, "green",
-                              self.tower3Label)
-
-
-
-
-    def create_box(self, x1, y1, x2, y2, title_text, value_widget):
-        padding = 20  # espace entre titre et box
-        title_height = -5  # hauteur du titre
-
-        # Titre au dessus des box
-        title_label = Label(self.canvas2, text=title_text, font=('Helvetica', 11), fg='white', bg='black')
-        self.canvas2.create_window((x1 + x2) // 2, y1 - title_height // 2, window=title_label)
-
-        # Diminue la hauteur des box relativement au padding et hauteur des titres
-        y1 += title_height + padding
-
-        # Cree le rectangle de valeur
-        self.canvas2.create_rectangle(x1, y1, x2, y2, fill='white', outline='white')
-
-        # Place le label dans la box, au centre
-        self.canvas2.create_window((x1 + x2) // 2, (y1 + y2) // 2, window=value_widget)
-
-    def create_tower_box(self, x1, y1, x2, y2, color, tower_label):
-        self.canvas2.create_rectangle(x1, y1, x2, y2, fill=color, outline='black')
-        self.canvas2.create_window((x1 + x2) // 2, (y1 + y2) // 2, window=tower_label)
+    # def create_tower_box(self, x1, y1, x2, y2, color, tower_label):
+    #     self.canvas2.create_rectangle(x1, y1, x2, y2, fill=color, outline='black')
+    #     self.canvas2.create_window((x1 + x2) // 2, (y1 + y2) // 2, window=tower_label)
 
     def afficherChrono(self, time_left):
-        self.chronoLabel.config(text=str(time_left))
+        self.chrono.config(text=str(time_left))
         print("afficher chrono: timeleft", time_left)
 
     def create_circle(self, x, y, r, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
