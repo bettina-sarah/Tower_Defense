@@ -7,7 +7,6 @@ from Creep import Creep
 from datetime import datetime
 from Tour import *
 
-
 class Modele():
     def __init__(self, parent):
         self.parent = parent
@@ -55,8 +54,7 @@ class Modele():
         self.creeps_inactifs = []
         self.creeps_actifs = []
         self.tours = []
-        # self.creer_creeps()
-        self.creer_niveau()
+
 
 
 
@@ -64,10 +62,20 @@ class Modele():
     def creer_niveau(self):
         self.vague += 1
         for i in range(self.nbCreeps):
-            v = self.vague *5 #************calcul arbitraire de vitesse, À TESTER******************
-            HP = self.vague * 20 #************calcul arbitraire de point de Vie, À TESTER******************
-            c = Creep(self, HP, v, i)
+            c = Creep(self, self.vague, i)
             self.creeps_inactifs.append(c)
+
+
+    def spawn_creep(self): #pop de creep inactif et append dans creep actif
+        if len(self.creeps_inactifs) > 0:
+            for i in range(self.nbCreeps):
+                self.creeps_actifs.append(self.creeps_inactifs.pop())
+        self.parent.vue.root.after(1000, self.spawn_creep)
+
+    def deplacer_creeps(self):
+        for creep in self.creeps_actifs:
+            creep.deplacer()
+
 
 #Méthode pour supprimer les creeps
     def suppression_creeps(self, ID):
