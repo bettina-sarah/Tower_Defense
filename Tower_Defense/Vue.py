@@ -15,6 +15,7 @@ class Vue:
         total_height = 960
         canvas1_height = total_height/4 * 3 # 3/4 du ratio
         self.canvas2_height = total_height/4  # 1/4
+        self.placement_tours = False
 
         self.create_canvases(canvas1_height, self.canvas2_height)
         self.creer_infos_joueur()
@@ -24,7 +25,16 @@ class Vue:
         self.create_chateau_canvas()
 
 
+    def placer_tour(self):
+        self.boutonTour1.bind("<Button-1>", self.trigger_placement_tours)
+        if self.placement_tours:
+            self.canvas1.bind("<Button-1>", self.creer_tour)
 
+    def creer_tour(self):
+
+
+    def trigger_placement_tours(self):
+        self.placement_tours = not self.placement_tours
     def creer_infos_joueur(self):
 
         x = self.fenetre_largeur / 4

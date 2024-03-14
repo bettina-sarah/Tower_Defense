@@ -55,7 +55,7 @@ class Modele():
         self.creeps_inactifs = []
         self.creeps_actifs = []
         self.tours = []
-        self.creer_creeps()
+        # self.creer_creeps()
         self.creer_niveau()
 
 
