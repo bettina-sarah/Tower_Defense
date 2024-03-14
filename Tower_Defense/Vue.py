@@ -16,6 +16,7 @@ class Vue:
         canvas1_height = total_height/4 * 3 # 3/4 du ratio
         self.canvas2_height = total_height/4  # 1/4
         self.placement_tours = False
+        self.road_items = []
 
         self.create_canvases(canvas1_height, self.canvas2_height)
         self.creer_infos_joueur()
@@ -30,6 +31,18 @@ class Vue:
 
 
     def creer_tour(self, event):
+
+        rectangle_x = event.x + 20
+        rectangle_y = event.y
+
+        # Check if the rectangle would overlap with any part of the road
+        overlapping_items = self.canvas1.find_overlapping(rectangle_x, rectangle_y, rectangle_x + 40,
+                                                    rectangle_y + 45)
+
+        # If no overlap with road, place the rectangle
+        if not any(item in overlapping_items for item in self.road_items):
+            self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
+                                    rectangle_y + 45, fill="blue")
        
 
 
@@ -106,8 +119,6 @@ class Vue:
 
 
 
-
-
     def afficherChrono(self, time_left):
         self.chrono.config(text=str(time_left))
 
@@ -128,13 +139,11 @@ class Vue:
             self.create_circle(i.posX, i.posY, self.canvas1)
 
 
-
     def create_troncons(self):
-        # A AMELIORER
         for i in self.modele.chemin.keys():
             start_coord = self.modele.chemin[i][0]
             end_coord = self.modele.chemin[i][1]
-            self.canvas1.create_line(start_coord, end_coord, fill = self.modele.troncon_couleur, width =70, capstyle=tk.ROUND, tags= ("troncon"))
+            self.road_items.append(self.canvas1.create_line(start_coord, end_coord, fill = self.modele.troncon_couleur, width =70, capstyle=tk.ROUND, tags= ("troncon")))
 
 
     def create_events_amelioraton(self):
