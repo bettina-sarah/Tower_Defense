@@ -30,11 +30,12 @@ class Vue:
         if self.placement_tours:
             self.canvas1.bind("<Button-1>", self.creer_tour)
 
-    def creer_tour(self):
+    # def creer_tour(self):
 
+    #
+    # def trigger_placement_tours(self):
+    #     self.placement_tours = not self.placement_tours
 
-    def trigger_placement_tours(self):
-        self.placement_tours = not self.placement_tours
     def creer_infos_joueur(self):
 
         x = self.fenetre_largeur / 4
@@ -153,7 +154,8 @@ class Vue:
         self.chrono.config(text=str(time_left))
         print("afficher chrono: timeleft", time_left)
 
-    def create_circle(self, x, y, r, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
+    def create_circle(self, x, y, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
+        r = 20 # test
         x0 = x - r
         y0 = y - r
         x1 = x + r
@@ -162,9 +164,15 @@ class Vue:
 
     #Affichage des Creeps actifs sur le canvas. Utilise la méthode create_circle
 
-    def afficher_Creeps(self, x, y):
-        #for i in self.modele.creeps_actifs:
-            self.create_circle(x, y, 20, self.canvas1)
+    def afficher_creeps(self):
+        self.canvas1.delete("creep")
+        for i in self.modele.creeps_actifs:
+            self.create_circle(i.posX, i.posY, self.canvas1)
+
+            print(i.id)
+
+
+
 
 
     def create_troncons(self):

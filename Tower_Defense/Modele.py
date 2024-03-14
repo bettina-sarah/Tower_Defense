@@ -12,7 +12,7 @@ class Modele():
         self.parent = parent
         self.chronoStarted = False
         self.enVie = True
-        self.chrono = 10
+        self.chrono = 2 # a remettre a 10
         self.argent = 200
         self.nbVies = 20
         self.vague = 0
@@ -70,6 +70,7 @@ class Modele():
         if len(self.creeps_inactifs) > 0:
             for i in range(self.nbCreeps):
                 self.creeps_actifs.append(self.creeps_inactifs.pop())
+                self.parent.vue.afficher_creeps()
         self.parent.vue.root.after(1000, self.spawn_creep)
 
     def deplacer_creeps(self):

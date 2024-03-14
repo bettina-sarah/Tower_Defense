@@ -42,6 +42,7 @@ class Controleur():
             if not self.modele.chronoStarted:
                 self.modele.spawn_creep()
                 self.modele.deplacer_creeps()
+                self.vue.afficher_creeps()
             self.vue.root.after(50, self.animer_jeu)
         else:
             #gameover() ou new game ...
