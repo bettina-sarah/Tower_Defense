@@ -7,7 +7,9 @@ class Controleur():
         self.modele = mod.Modele(self)
         self.vue = vue.Vue(self, self.modele)
         self.vue.root.after(1000, self.commencer_partie)
+        self.vue.root.after(2000, self.modele.spawn_creep)
         self.vue.root.mainloop()
+
 
 
     def commencer_partie(self):
@@ -40,7 +42,7 @@ class Controleur():
         #vue affiche creeps
         if self.modele.enVie:
             if not self.modele.chronoStarted:
-                self.modele.spawn_creep()
+
                 self.modele.deplacer_creeps()
                 self.vue.afficher_creeps()
             self.vue.root.after(50, self.animer_jeu)

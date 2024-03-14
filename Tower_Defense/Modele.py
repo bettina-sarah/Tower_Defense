@@ -68,9 +68,9 @@ class Modele():
 
     def spawn_creep(self): #pop de creep inactif et append dans creep actif
         if len(self.creeps_inactifs) > 0:
-            for i in range(self.nbCreeps):
-                self.creeps_actifs.append(self.creeps_inactifs.pop())
-                self.parent.vue.afficher_creeps()
+
+            self.creeps_actifs.append(self.creeps_inactifs.pop())
+            # self.parent.vue.afficher_creeps()
         self.parent.vue.root.after(1000, self.spawn_creep)
 
     def deplacer_creeps(self):
