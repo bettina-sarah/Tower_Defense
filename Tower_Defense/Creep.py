@@ -21,7 +21,7 @@ class Creep():
 
     def deplacer(self): #marche pour troncon 0
         for creep in self.modele.creeps_actifs:
-            print("creep pos x et y:", self.posX, self.posY)
+
             # ?? creep.pos == self.cible
             creep.pos = self.posX, self.posY
             self.cible = self.cibleX, self.cibleY
