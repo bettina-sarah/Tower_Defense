@@ -6,40 +6,42 @@ class Controleur():
     def __init__(self):
         self.modele = mod.Modele(self)
         self.vue = vue.Vue(self, self.modele)
+        self.vue.root.after(1000, self.commencer_partie)
         self.vue.root.mainloop()
 
+
     def commencer_partie(self):
-        if self.modele.enVie:  # while infini sinon rien pour l'arreter
-            if not self.modele.chronoStarted:
-                print("commencer partie - chrono")
-                self.start_chrono()
-            self.animer_jeu()
+        if self.vue:
+            if self.modele.enVie:  # while infini sinon rien pour l'arreter
+                self.modele.creer_niveau() #cree la vague et creeps inactifs
+                if not self.modele.chronoStarted:
+                    self.start_chrono()
+                self.animer_jeu()
 
         else:  # si pas en vie
             self.start_new_game()
 
     def start_chrono(self):
+        print("start chrono")
         self.modele.chronoStarted = True
         if self.modele.chrono >= 0:
             self.vue.afficherChrono(self.modele.chrono)
             print("mode start chrono & chrono value", self.modele.chrono)
             self.modele.chrono -= 1
             self.vue.root.after(1000, self.start_chrono)
-
         else:
             self.modele.chronoStarted = False
             self.modele.chrono = 10
-            # self.vue.root.after_cancel(self.startChrono)
-            # chronostarted devient false... donc startchrono est pas rappelé
 
 
 
 
     def animer_jeu(self):
-        #creer creeps & deplacement
         #vue affiche creeps
-        self.modele.commencer_niveau(self)
         if self.modele.enVie:
+            if not self.modele.chronoStarted:
+                self.modele.spawn_creep()
+                self.modele.deplacer_creeps()
             self.vue.root.after(50, self.animer_jeu)
         else:
             #gameover() ou new game ...
