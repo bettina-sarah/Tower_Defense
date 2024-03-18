@@ -27,7 +27,6 @@ class Modele():
             6: [(627, 297), (627, 495)],
             7: [(627, 495), (924, 495)],
         }
-
         self.troncon_couleur = "sienna3"
         self.chateau_couleur = "DarkOrchid4"
         # self.dict_pos_chateau = {

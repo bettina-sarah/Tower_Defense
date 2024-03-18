@@ -18,22 +18,25 @@ class Controleur():
                 self.modele.creer_niveau() #cree la vague et creeps inactifs
                 if not self.modele.chronoStarted:
                     self.start_chrono()
+                    self.changer_vague()
                 self.animer_jeu()
 
         else:  # si pas en vie
             self.start_new_game()
 
     def start_chrono(self):
-        print("start chrono")
         self.modele.chronoStarted = True
         if self.modele.chrono >= 0:
             self.vue.afficherChrono(self.modele.chrono)
-            print("mode start chrono & chrono value", self.modele.chrono)
             self.modele.chrono -= 1
             self.vue.root.after(1000, self.start_chrono)
         else:
             self.modele.chronoStarted = False
             self.modele.chrono = 10
+
+    def changer_vague(self):
+        self.vue.afficher_vague()
+
 
 
 
@@ -42,7 +45,6 @@ class Controleur():
         #vue affiche creeps
         if self.modele.enVie:
             if not self.modele.chronoStarted:
-
                 self.modele.deplacer_creeps()
                 self.vue.afficher_creeps()
             self.vue.root.after(50, self.animer_jeu)
