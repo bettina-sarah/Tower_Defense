@@ -75,7 +75,32 @@ class Modele():
 
     def deplacer_creeps(self):
         for creep in self.creeps_actifs:
-            creep.deplacer()
+            if (creep.posX, creep.posY) == (creep.cibleDebut, creep.cibleFin):
+                # Changer de tronçon si possible
+                if creep.troncon < len(self.modele.chemin) - 1:
+                    creep.troncon += 1
+                   # si on change de troncon
+                    creep.cibleDebut, creep.cibleFin = self.modele.chemin[creep.troncon][1]  # Mettre à jour la cible du creep
+                    # on est arriver a la fin
+
+            # Déplacer le creep vers sa cible
+            if creep.troncon == 0:
+                creep.posY += 10
+            elif creep.troncon == 1:
+                creep.posX += 10
+            elif creep.troncon == 2:
+                creep.posY -= 10
+            elif creep.troncon == 3:
+                creep.posX += 10
+            elif creep.troncon == 4:
+                creep.posY += 10
+            elif creep.troncon == 5:
+                creep.posX -= 10
+            elif creep.troncon == 6:
+                creep.posY += 10
+            elif creep.troncon == 7:
+                creep.posX += 10
+
 
 
 #Méthode pour supprimer les creeps
