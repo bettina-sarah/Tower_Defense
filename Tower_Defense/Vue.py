@@ -1,4 +1,5 @@
 import tkinter as tk
+from functools import partial
 
 from tkinter import *
 
@@ -17,6 +18,10 @@ class Vue:
         self.canvas2_height = total_height/4  # 1/4
         self.placement_tours = False
         self.road_items = []
+        self.titre_choix_tours_id = None
+        self.boutonTour1_id = None
+        self.boutonTour2_id = None
+        self.boutonTour3_id = None
 
         self.create_canvases(canvas1_height, self.canvas2_height)
         self.creer_infos_joueur()
@@ -27,30 +32,39 @@ class Vue:
         self.placer_tour()
 
     def placer_tour(self):
-        self.boutonTour1.bind("<Button-1>", self.trigger_placement_tours)
+        self.boutonTour1.bind("<Button-1>", partial(self.trigger_placement_tours, tour_en_cours="Projectile"))
+        self.boutonTour2.bind("<Button-1>", partial(self.trigger_placement_tours, tour_en_cours="Eclair"))
+        self.boutonTour3.bind("<Button-1>", partial(self.trigger_placement_tours, tour_en_cours="Poison"))
 
 
     def creer_tour(self, event):
 
-        rectangle_x = event.x + 20
-        rectangle_y = event.y
+            rectangle_x = event.x + 20
+            rectangle_y = event.y
 
-        # Check if the rectangle would overlap with any part of the road
-        overlapping_items = self.canvas1.find_overlapping(rectangle_x, rectangle_y, rectangle_x + 40,
-                                                    rectangle_y + 45)
+            # Check sil y a un overlap
+            overlapping_items = self.canvas1.find_overlapping(rectangle_x, rectangle_y, rectangle_x + 40,
+                                                        rectangle_y + 45)
 
-        # If no overlap with road, place the rectangle
-        if not any(item in overlapping_items for item in self.road_items):
-            self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
-                                    rectangle_y + 45, fill="blue")
-       
+            # Si pas de overlap, place la tour
+            if not any(item in overlapping_items for item in self.road_items) and self.placement_tours == True:
+                if self.tour_en_cours == "Projectile":
+                    self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
+                                            rectangle_y + 45, fill="orange", tag="projectile")
+                elif self.tour_en_cours == "Eclair":
+                    self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
+                                            rectangle_y + 45, fill="blue", tag="eclair")
+                elif self.tour_en_cours == "Poison":
+                    self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
+                                            rectangle_y + 45, fill="green", tag="poison")
+            self.placement_tours = False
 
-
-
-    def trigger_placement_tours(self, event):
+    def trigger_placement_tours(self, event, tour_en_cours):
         self.placement_tours = not self.placement_tours
-        if self.placement_tours == True:
+        if self.placement_tours:
+            self.tour_en_cours = tour_en_cours
             self.canvas1.bind("<Button-1>", self.creer_tour)
+
 
 
     def creer_infos_joueur(self):
@@ -90,17 +104,31 @@ class Vue:
     def creer_menu_choix_tours(self):
         x = self.fenetre_largeur / 4
         y = self.canvas2_height / 5
-        self.titre_choix_tours = Label(self.canvas2, text='Choix des tours', font=('Helvetica', 11), fg='white', bg='black')
-        self.canvas2.create_window(x * 2, y/2, anchor="center", window=self.titre_choix_tours)
-        self.boutonTour1 = Button(self.canvas2, text='Tour Projectile', font=('Helvetica', 11), bg='white', width=10, height=5)
-        self.canvas2.create_window(x*1.5, y * 2, anchor="center", window=self.boutonTour1)
+        self.titre_choix_tours = Label(self.canvas2, text='Choix des tours', font=('Helvetica', 11), fg='white',
+                                       bg='black')
+        self.titre_choix_tours_id = self.canvas2.create_window(x * 2, y / 2, anchor="center",
+                                                               window=self.titre_choix_tours)
+
+        self.boutonTour1 = Button(self.canvas2, text='Tour Projectile', font=('Helvetica', 11), bg='white', width=10,
+                                  height=5)
+        self.boutonTour1_id = self.canvas2.create_window(x * 1.5, y * 2, anchor="center", window=self.boutonTour1)
         self.boutonTour1.config(bg='orange', fg='black')
-        self.boutonTour2 = Button(self.canvas2, text='Tour Eclair', font=('Helvetica', 11), bg='white', width=10,height=5)
-        self.canvas2.create_window(x*2, y * 2, anchor="center", window=self.boutonTour2)
+
+        self.boutonTour2 = Button(self.canvas2, text='Tour Eclair', font=('Helvetica', 11), bg='white', width=10,
+                                  height=5)
+        self.boutonTour2_id = self.canvas2.create_window(x * 2, y * 2, anchor="center", window=self.boutonTour2)
         self.boutonTour2.config(bg='blue', fg='black')
-        self.boutonTour3 = Button(self.canvas2, text='Tour Poison', font=('Helvetica', 11), bg='white', width=10,height=5)
-        self.canvas2.create_window(x*2.5, y * 2, anchor="center", window=self.boutonTour3)
+
+        self.boutonTour3 = Button(self.canvas2, text='Tour Poison', font=('Helvetica', 11), bg='white', width=10,
+                                  height=5)
+        self.boutonTour3_id = self.canvas2.create_window(x * 2.5, y * 2, anchor="center", window=self.boutonTour3)
         self.boutonTour3.config(bg='green', fg='black')
+
+    def supprimer_menu_choix_tours(self):
+        self.canvas2.delete(self.titre_choix_tours_id)
+        self.canvas2.delete(self.boutonTour1_id)
+        self.canvas2.delete(self.boutonTour2_id)
+        self.canvas2.delete(self.boutonTour3_id)
 
     def create_canvases(self, canvas1_height, canvas2_height):
 
