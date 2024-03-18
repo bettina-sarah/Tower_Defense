@@ -52,6 +52,8 @@ class Controleur():
             #gameover() ou new game ...
             pass
 
+    def creer_tours(self, type, niveau, coordos):
+        self.modele.creer_tours(type,niveau, coordos)
 
 
 

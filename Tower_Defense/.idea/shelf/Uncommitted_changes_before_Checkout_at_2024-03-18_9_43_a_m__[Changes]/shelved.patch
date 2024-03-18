@@ -1,0 +1,242 @@
+Index: Vue.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import tkinter as tk\r\n\r\nfrom tkinter import *\r\n\r\n\r\nclass Vue:\r\n    def __init__(self, parent, modele):\r\n        self.parent = parent\r\n        self.modele = modele\r\n        self.root = Tk()\r\n        self.root.geometry(\"1280x960\")  # 32x24 (x40) 24 = hauteur 32 = largeur\r\n        self.fenetre_largeur = 1280\r\n        self.fenetre_hauteur = 960\r\n        # self.create_canvases()\r\n        total_height = 960\r\n        canvas1_height = total_height/4 * 3 # 3/4 du ratio\r\n        self.canvas2_height = total_height/4  # 1/4\r\n\r\n        self.create_canvases(canvas1_height, self.canvas2_height)\r\n        self.creer_infos_joueur()\r\n        self.creer_menu_choix_tours()\r\n        self.create_troncons()\r\n        # self.create_events_amelioraton()\r\n        self.create_chateau_canvas()\r\n\r\n\r\n\r\n    def creer_infos_joueur(self):\r\n\r\n        x = self.fenetre_largeur / 4\r\n        y = self.canvas2_height / 5\r\n\r\n        self.chronoLabel = Label(self.canvas2, text='Chrono',font=('Helvetica', 11), bg='white', width=5)\r\n        self.chrono = Label(self.canvas2, text=str(self.modele.chrono), font=('Helvetica', 11),bg='white', width=5)\r\n        self.canvas2.create_window(x / 2,y * 1 , anchor=\"center\", window=self.chronoLabel)\r\n        self.canvas2.create_window(x / 2, y * 2, anchor=\"center\", window=self.chrono)\r\n\r\n\r\n\r\n\r\n\r\n        self.vagueLabel = Label(self.canvas2, text='Vague', font=('Helvetica', 11), bg='white', width=5)\r\n        self.vague = Label(self.canvas2, text=str(self.modele.vague), font=('Helvetica', 11), bg='white', width=5)\r\n        self.canvas2.create_window(x / 2, y * 3, anchor=\"center\", window=self.vagueLabel)\r\n        self.canvas2.create_window(x / 2, y * 4, anchor=\"center\", window=self.vague)\r\n\r\n\r\n        self.nbVieLabel = Label(self.canvas2, text='Vies', font=('Helvetica', 11), bg='white', width=5)\r\n        self.nbVie = Label(self.canvas2, text=str(self.modele.nbVies), font=('Helvetica', 11), bg='white', width=5)\r\n        self.canvas2.create_window(x * 3.5, y * 1, anchor=\"center\", window=self.nbVieLabel)\r\n        self.canvas2.create_window(x * 3.5, y * 2, anchor=\"center\", window=self.nbVie)\r\n\r\n\r\n        self.argentLabel = Label(self.canvas2, text='Argent', font=('Helvetica', 11), bg='white',\r\n                                 width=5)\r\n        self.argent = Label(self.canvas2, text=str(self.modele.argent), font=('Helvetica', 11), bg='white',\r\n                                 width=5)\r\n\r\n        self.canvas2.create_window(x * 3.5, y * 3, anchor=\"center\", window=self.argentLabel)\r\n        self.canvas2.create_window(x * 3.5, y * 4, anchor=\"center\", window=self.argent)\r\n\r\n    def creer_menu_choix_tours(self):\r\n        x = self.fenetre_largeur / 4\r\n        y = self.canvas2_height / 5\r\n        self.titre_choix_tours = Label(self.canvas2, text='Choix des tours', font=('Helvetica', 11), fg='white', bg='black')\r\n        self.canvas2.create_window(x * 2, y/2, anchor=\"center\", window=self.titre_choix_tours)\r\n        self.boutonTour1 = Button(self.canvas2, text='Tour Projectile', font=('Helvetica', 11), bg='white', width=10, height=5)\r\n        self.canvas2.create_window(x*1.5, y * 2, anchor=\"center\", window=self.boutonTour1)\r\n        self.boutonTour1.config(bg='orange', fg='black')\r\n        self.boutonTour2 = Button(self.canvas2, text='Tour Eclair', font=('Helvetica', 11), bg='white', width=10,height=5)\r\n        self.canvas2.create_window(x*2, y * 2, anchor=\"center\", window=self.boutonTour2)\r\n        self.boutonTour2.config(bg='blue', fg='black')\r\n        self.boutonTour3 = Button(self.canvas2, text='Tour Poison', font=('Helvetica', 11), bg='white', width=10,height=5)\r\n        self.canvas2.create_window(x*2.5, y * 2, anchor=\"center\", window=self.boutonTour3)\r\n        self.boutonTour3.config(bg='green', fg='black')\r\n\r\n    def create_canvases(self, canvas1_height, canvas2_height):\r\n\r\n        self.canvas1 = tk.Canvas(self.root, bg='black', height=canvas1_height, width=1280)\r\n        print(canvas1_height)\r\n        #self.canvas1.grid(row=0, column=0, sticky=\"nsew\")\r\n\r\n\r\n        self.canvas2 = tk.Canvas(self.root, bg='red', height=canvas2_height, width=1280)\r\n        # self.canvas2.grid(row=1, column=0, sticky=\"nsew\") # nord sud est ouest donc il spread pour toucher a tous les bords du grid cell\r\n        self.canvas1.pack()\r\n        self.canvas2.pack()\r\n\r\n        # self.root.grid_rowconfigure(0, weight=3)  # Poids a chaque canvas\r\n        # self.root.grid_rowconfigure(1, weight=1)\r\n\r\n\r\n\r\n    # def create_boxes(self):\r\n    #     # Chaque widget de linterface joueur\r\n    #     self.create_box(self.start_x_position + 0, 15, self.start_x_position + 100, 65, \"Chrono\", self.chronoLabel)\r\n    #     self.create_box(self.start_x_position + 0, 75, self.start_x_position + 100, 125, \"Vague\", self.vagueLabel)\r\n    #     self.create_box(self.start_x_position + 150, 15, self.start_x_position + 450, 125, \"Choix de tours\",\r\n    #                     self.choixTourTitreLabel)\r\n    #     self.create_box(self.start_x_position + 500, 15, self.start_x_position + 600, 65, \"Vies\", self.nbVieLabel)\r\n    #     self.create_box(self.start_x_position + 500, 75, self.start_x_position + 600, 125, \"Argent\", self.argentLabel)\r\n    #\r\n    #\r\n    #     self.create_tower_box(self.start_x_position + 160, 43, self.start_x_position + 240, 113, \"purple\",\r\n    #                           self.tower1Label)\r\n    #\r\n    #\r\n    #     self.create_tower_box(self.start_x_position + 260, 43, self.start_x_position + 340, 113, \"yellow\",\r\n    #                           self.tower2Label)\r\n    #     self.create_tower_box(self.start_x_position + 360, 43, self.start_x_position + 440, 113, \"green\",\r\n    #                           self.tower3Label)\r\n\r\n\r\n\r\n\r\n    # def create_box(self, x1, y1, x2, y2, title_text, value_widget):\r\n    #     padding = 20  # espace entre titre et box\r\n    #     title_height = 5  # hauteur du titre\r\n    #\r\n    #     # Titre au dessus des box\r\n    #     # title_label = Label(self.menu_choix_tours, text=title_text, font=('Helvetica', 11), fg='white', bg='black')\r\n    #     title_label = Label(self.canvas2, text=title_text, font=('Helvetica', 11), fg='white', bg='black')\r\n    #     title_label_window = self.canvas2.create_window((x1 + x2) // 2, y1 - title_height // 2, window=title_label,\r\n    #                                                     anchor='n')\r\n    #\r\n    #     self.monMenuChoixTours = self.canvas2.create_window((x1 + x2) // 2, y1 - title_height // 2, window=self.menu_choix_tours, tags=\"menuChoixTours\")\r\n    #     self.monMenuAmelioration = self.canvas2.create_window((x1 + x2) // 2, y1 - title_height // 2, window=self.menu_amelioration_tours, tags=\"menuAmeliorationTours\")\r\n    #\r\n    #     # Diminue la hauteur des box relativement au padding et hauteur des titres\r\n    #     y1 += title_height + padding\r\n    #\r\n    #     # Cree le contour blanc de Choix de tours.\r\n    #     self.canvas2.create_rectangle(x1, y1, x2, y2, fill='white', outline='white')\r\n    #\r\n    #     # Place le label dans la box, au centre\r\n    #     self.canvas2.create_window((x1 + x2) // 2, (y1 + y2) // 2, window=value_widget)\r\n\r\n    # def create_tower_box(self, x1, y1, x2, y2, color, tower_label):\r\n    #     self.canvas2.create_rectangle(x1, y1, x2, y2, fill=color, outline='black')\r\n    #     self.canvas2.create_window((x1 + x2) // 2, (y1 + y2) // 2, window=tower_label)\r\n\r\n    def afficherChrono(self, time_left):\r\n        self.chrono.config(text=str(time_left))\r\n        print(\"afficher chrono: timeleft\", time_left)\r\n\r\n    def create_circle(self, x, y, r, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon\r\n        x0 = x - r\r\n        y0 = y - r\r\n        x1 = x + r\r\n        y1 = y + r\r\n        return canvas.create_oval(x0, y0, x1, y1, fill = \"red3\", tags = (\"creep\",))\r\n\r\n    #Affichage des Creeps actifs sur le canvas. Utilise la méthode create_circle\r\n\r\n    def afficher_Creeps(self, x, y):\r\n        #for i in self.modele.creeps_actifs:\r\n            self.create_circle(x, y, 20, self.canvas1)\r\n\r\n\r\n    def create_troncons(self):\r\n        # A AMELIORER\r\n        start1_coords = self.modele.dict_rect['start1']\r\n        end1_coords = self.modele.dict_rect['end1']\r\n\r\n        self.canvas1.create_rectangle(start1_coords, end1_coords,\r\n                                      fill=self.modele.troncon_couleur, tags=(\"troncon1\",))\r\n\r\n        start2_coords = self.modele.dict_rect['start2']\r\n        end2_coords = self.modele.dict_rect['end2']\r\n        self.canvas1.create_rectangle(start2_coords, end2_coords,\r\n                                      fill=self.modele.troncon_couleur, tags=(\"troncon2\",))\r\n\r\n        start3_coords = self.modele.dict_rect['start3']\r\n        end3_coords = self.modele.dict_rect['end3']\r\n\r\n        self.canvas1.create_rectangle(start3_coords, end3_coords,\r\n                                      fill=self.modele.troncon_couleur, tags=(\"troncon3\",))\r\n\r\n        start4_coords = self.modele.dict_rect['start4']\r\n        end4_coords = self.modele.dict_rect['end4']\r\n\r\n        self.canvas1.create_rectangle(start4_coords, end4_coords,\r\n                                      fill=self.modele.troncon_couleur, tags=(\"troncon4\",))\r\n\r\n        start5_coords = self.modele.dict_rect['start5']\r\n        end5_coords = self.modele.dict_rect['end5']\r\n\r\n        self.canvas1.create_rectangle(start5_coords, end5_coords,\r\n                                      fill=self.modele.troncon_couleur, tags=(\"troncon5\",))\r\n\r\n        start6_coords = self.modele.dict_rect['start6']\r\n        end6_coords = self.modele.dict_rect['end6']\r\n\r\n        self.canvas1.create_rectangle(start6_coords, end6_coords,\r\n                                      fill=self.modele.troncon_couleur, tags=(\"troncon6\",))\r\n\r\n        start7_coords = self.modele.dict_rect['start7']\r\n        end7_coords = self.modele.dict_rect['end7']\r\n\r\n        self.canvas1.create_rectangle(start7_coords, end7_coords,\r\n                                      fill=self.modele.troncon_couleur, tags=(\"troncon7\",))\r\n\r\n        start8_coords = self.modele.dict_rect['start8']\r\n        end8_coords = self.modele.dict_rect['end8']\r\n\r\n        self.canvas1.create_rectangle(start8_coords, end8_coords,\r\n                                      fill=self.modele.troncon_couleur, tags=(\"troncon8\",))\r\n\r\n    def create_events_amelioraton(self):\r\n        # attacher event sur le label tower1:\r\n        self.tower1Label.bind(\"<Button-1>\", self.create_box_amelioration)\r\n\r\n    def create_box_amelioration(self, event):\r\n        self.create_box(self.start_x_position + 150, 15, self.start_x_position + 450, 125, \"Amélioration des tours\",\r\n                        self.choixTourTitreLabel)\r\n\r\n    def create_chateau_canvas(self):\r\n       # coinG_coords = self.modele.dict_pos_chateau['coinG']\r\n       # finG_coords = self.modele.dict_pos_chateau['finG']\r\n       # self.canvas1.create_rectangle(coinG_coords, finG_coords,\r\n       #                               fill=self.modele.chateau_couleur, tags=(\"troncon\",))\r\n       #\r\n       # coinD_coords = self.modele.dict_pos_chateau['coinD']\r\n       # finD_coords = self.modele.dict_pos_chateau['finD']\r\n       # self.canvas1.create_rectangle(coinD_coords,finD_coords,\r\n       #                               fill=self.modele.chateau_couleur, tags=(\"troncon\",))\r\n       # blocHG_coords = self.modele.dict_pos_chateau['blocHG']\r\n       # finHG_coords = self.modele.dict_pos_chateau['finHG']\r\n       # self.canvas1.create_rectangle(blocHG_coords,finHG_coords,\r\n       #                               fill=self.modele.chateau_couleur, tags=(\"troncon\",))\r\n       # blocHD_coords = self.modele.dict_pos_chateau['blocHD']\r\n       # finHD_coords = self.modele.dict_pos_chateau['finHD']\r\n       # self.canvas1.create_rectangle(blocHD_coords,finHD_coords,\r\n       #                               fill=self.modele.chateau_couleur, tags=(\"troncon\",))\r\n       # blocMG_coords = self.modele.dict_pos_chateau['blocMG']\r\n       # finMG_coords = self.modele.dict_pos_chateau['finMG']\r\n       # self.canvas1.create_rectangle(blocMG_coords,finMG_coords,\r\n       #                               fill=self.modele.chateau_couleur, tags=(\"troncon\",))\r\n       #\r\n       # blocMD_coords = self.modele.dict_pos_chateau['blocMD']\r\n       # finMD_coords = self.modele.dict_pos_chateau['finMD']\r\n       # self.canvas1.create_rectangle(blocMD_coords,finMD_coords,\r\n       #                               fill=self.modele.chateau_couleur, tags=(\"troncon\",))\r\n       # blocBG_coords = self.modele.dict_pos_chateau['blocBG']\r\n       # finBG_coords = self.modele.dict_pos_chateau['finBG']\r\n       # self.canvas1.create_rectangle(blocBG_coords,finBG_coords,\r\n       #                               fill=self.modele.chateau_couleur, tags=(\"troncon\",))\r\n       #\r\n       # blocBD_coords = self.modele.dict_pos_chateau['blocBD']\r\n       # finBD_coords = self.modele.dict_pos_chateau['finBD']\r\n       #\r\n       # self.canvas1.create_rectangle(blocBD_coords,finBD_coords,\r\n       #                               fill=self.modele.chateau_couleur, tags=(\"troncon\",))\r\n        self.canvas1.create_rectangle(894,438,972,528,fill=self.modele.chateau_couleur)\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Vue.py b/Vue.py
+--- a/Vue.py	
++++ b/Vue.py	
+@@ -15,6 +15,8 @@
+         total_height = 960
+         canvas1_height = total_height/4 * 3 # 3/4 du ratio
+         self.canvas2_height = total_height/4  # 1/4
++        self.placement_tours = False
++        self.road_items = []
+ 
+         self.create_canvases(canvas1_height, self.canvas2_height)
+         self.creer_infos_joueur()
+@@ -22,7 +24,34 @@
+         self.create_troncons()
+         # self.create_events_amelioraton()
+         self.create_chateau_canvas()
++        self.placer_tour()
++
++    def placer_tour(self):
++        self.boutonTour1.bind("<Button-1>", self.trigger_placement_tours)
++        
++
++
++    def creer_tour(self, event):
++
++        rectangle_x = event.x + 20
++        rectangle_y = event.y
++
++        # Check if the rectangle would overlap with any part of the road
++        overlapping_items = self.canvas1.find_overlapping(rectangle_x, rectangle_y, rectangle_x + 40,
++                                                    rectangle_y + 45)
+ 
++        # If no overlap with road, place the rectangle
++        if not any(item in overlapping_items for item in self.road_items):
++            self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
++                                    rectangle_y + 45, fill="blue")
++       
++
++
++
++    def trigger_placement_tours(self, event):
++        self.placement_tours = not self.placement_tours
++        if self.placement_tours == True:
++            self.canvas1.bind("<Button-1>", self.creer_tour)
+ 
+ 
+     def creer_infos_joueur(self):
+@@ -91,59 +120,12 @@
+ 
+ 
+ 
+-    # def create_boxes(self):
+-    #     # Chaque widget de linterface joueur
+-    #     self.create_box(self.start_x_position + 0, 15, self.start_x_position + 100, 65, "Chrono", self.chronoLabel)
+-    #     self.create_box(self.start_x_position + 0, 75, self.start_x_position + 100, 125, "Vague", self.vagueLabel)
+-    #     self.create_box(self.start_x_position + 150, 15, self.start_x_position + 450, 125, "Choix de tours",
+-    #                     self.choixTourTitreLabel)
+-    #     self.create_box(self.start_x_position + 500, 15, self.start_x_position + 600, 65, "Vies", self.nbVieLabel)
+-    #     self.create_box(self.start_x_position + 500, 75, self.start_x_position + 600, 125, "Argent", self.argentLabel)
+-    #
+-    #
+-    #     self.create_tower_box(self.start_x_position + 160, 43, self.start_x_position + 240, 113, "purple",
+-    #                           self.tower1Label)
+-    #
+-    #
+-    #     self.create_tower_box(self.start_x_position + 260, 43, self.start_x_position + 340, 113, "yellow",
+-    #                           self.tower2Label)
+-    #     self.create_tower_box(self.start_x_position + 360, 43, self.start_x_position + 440, 113, "green",
+-    #                           self.tower3Label)
+-
+-
+-
+-
+-    # def create_box(self, x1, y1, x2, y2, title_text, value_widget):
+-    #     padding = 20  # espace entre titre et box
+-    #     title_height = 5  # hauteur du titre
+-    #
+-    #     # Titre au dessus des box
+-    #     # title_label = Label(self.menu_choix_tours, text=title_text, font=('Helvetica', 11), fg='white', bg='black')
+-    #     title_label = Label(self.canvas2, text=title_text, font=('Helvetica', 11), fg='white', bg='black')
+-    #     title_label_window = self.canvas2.create_window((x1 + x2) // 2, y1 - title_height // 2, window=title_label,
+-    #                                                     anchor='n')
+-    #
+-    #     self.monMenuChoixTours = self.canvas2.create_window((x1 + x2) // 2, y1 - title_height // 2, window=self.menu_choix_tours, tags="menuChoixTours")
+-    #     self.monMenuAmelioration = self.canvas2.create_window((x1 + x2) // 2, y1 - title_height // 2, window=self.menu_amelioration_tours, tags="menuAmeliorationTours")
+-    #
+-    #     # Diminue la hauteur des box relativement au padding et hauteur des titres
+-    #     y1 += title_height + padding
+-    #
+-    #     # Cree le contour blanc de Choix de tours.
+-    #     self.canvas2.create_rectangle(x1, y1, x2, y2, fill='white', outline='white')
+-    #
+-    #     # Place le label dans la box, au centre
+-    #     self.canvas2.create_window((x1 + x2) // 2, (y1 + y2) // 2, window=value_widget)
+-
+-    # def create_tower_box(self, x1, y1, x2, y2, color, tower_label):
+-    #     self.canvas2.create_rectangle(x1, y1, x2, y2, fill=color, outline='black')
+-    #     self.canvas2.create_window((x1 + x2) // 2, (y1 + y2) // 2, window=tower_label)
+-
+     def afficherChrono(self, time_left):
+         self.chrono.config(text=str(time_left))
+-        print("afficher chrono: timeleft", time_left)
+ 
+-    def create_circle(self, x, y, r, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
++
++    def create_circle(self, x, y, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
++        r = 20 # test
+         x0 = x - r
+         y0 = y - r
+         x1 = x + r
+@@ -152,59 +134,18 @@
+ 
+     #Affichage des Creeps actifs sur le canvas. Utilise la méthode create_circle
+ 
+-    def afficher_Creeps(self, x, y):
+-        #for i in self.modele.creeps_actifs:
+-            self.create_circle(x, y, 20, self.canvas1)
++    def afficher_creeps(self):
++        self.canvas1.delete("creep")
++        for i in self.modele.creeps_actifs:
++            self.create_circle(i.posX, i.posY, self.canvas1)
+ 
+ 
+     def create_troncons(self):
+-        # A AMELIORER
+-        start1_coords = self.modele.dict_rect['start1']
+-        end1_coords = self.modele.dict_rect['end1']
+-
+-        self.canvas1.create_rectangle(start1_coords, end1_coords,
+-                                      fill=self.modele.troncon_couleur, tags=("troncon1",))
+-
+-        start2_coords = self.modele.dict_rect['start2']
+-        end2_coords = self.modele.dict_rect['end2']
+-        self.canvas1.create_rectangle(start2_coords, end2_coords,
+-                                      fill=self.modele.troncon_couleur, tags=("troncon2",))
+-
+-        start3_coords = self.modele.dict_rect['start3']
+-        end3_coords = self.modele.dict_rect['end3']
++        for i in self.modele.chemin.keys():
++            start_coord = self.modele.chemin[i][0]
++            end_coord = self.modele.chemin[i][1]
++            self.road_items.append(self.canvas1.create_line(start_coord, end_coord, fill = self.modele.troncon_couleur, width =70, capstyle=tk.ROUND, tags= ("troncon")))
+ 
+-        self.canvas1.create_rectangle(start3_coords, end3_coords,
+-                                      fill=self.modele.troncon_couleur, tags=("troncon3",))
+-
+-        start4_coords = self.modele.dict_rect['start4']
+-        end4_coords = self.modele.dict_rect['end4']
+-
+-        self.canvas1.create_rectangle(start4_coords, end4_coords,
+-                                      fill=self.modele.troncon_couleur, tags=("troncon4",))
+-
+-        start5_coords = self.modele.dict_rect['start5']
+-        end5_coords = self.modele.dict_rect['end5']
+-
+-        self.canvas1.create_rectangle(start5_coords, end5_coords,
+-                                      fill=self.modele.troncon_couleur, tags=("troncon5",))
+-
+-        start6_coords = self.modele.dict_rect['start6']
+-        end6_coords = self.modele.dict_rect['end6']
+-
+-        self.canvas1.create_rectangle(start6_coords, end6_coords,
+-                                      fill=self.modele.troncon_couleur, tags=("troncon6",))
+-
+-        start7_coords = self.modele.dict_rect['start7']
+-        end7_coords = self.modele.dict_rect['end7']
+-
+-        self.canvas1.create_rectangle(start7_coords, end7_coords,
+-                                      fill=self.modele.troncon_couleur, tags=("troncon7",))
+-
+-        start8_coords = self.modele.dict_rect['start8']
+-        end8_coords = self.modele.dict_rect['end8']
+-
+-        self.canvas1.create_rectangle(start8_coords, end8_coords,
+-                                      fill=self.modele.troncon_couleur, tags=("troncon8",))
+ 
+     def create_events_amelioraton(self):
+         # attacher event sur le label tower1:
+Index: ../questions.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../questions.txt b/../questions.txt
+deleted file mode 100644
+--- a/../questions.txt	
++++ /dev/null	
+@@ -1,11 +0,0 @@
+-1. CHRONO: 
+--aucune fonc avant mainloop
+- - tout dans controleur qui parle au modele & vue?
+-chrono --
+--while loop, after cancel, chrono redevient 10
+-
+-2. details canvas: height width - modele?
+-
+-3. argent & vies - info modele - changé labels
+-
+-4. Frame?
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a61e30d9-56e8-4a97-ab13-9b386fcf2ea2\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Vue.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Vue.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2dNbs3v5wPgF4vFq61WUvNoN65B\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Python.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.Vue.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;gui-amelioration-tours&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/GenieLog1/TD/Tower_Defense/Tower_Defense&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\GenieLog1\\TD\\Tower_Defense\\Tower_Defense\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"Tower_Defense\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"SDK_NAME\" value=\"Python 3.12 (pythonProject)\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/Main.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a61e30d9-56e8-4a97-ab13-9b386fcf2ea2\" name=\"Changes\" comment=\"\" />\r\n      <created>1709851686239</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1709851686239</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,8 +5,11 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="a61e30d9-56e8-4a97-ab13-9b386fcf2ea2" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../2024_01_mandat_TD_leger.docx" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/../Excel_Baris_AT.xlsx" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/../Mandat_TowerDefense_Gab.xlsx" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/Vue.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vue.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../questions.txt" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -14,6 +17,11 @@
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$/.." value="main" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+   </component>
+   <component name="ProjectColorInfo">{
