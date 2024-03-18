@@ -54,6 +54,7 @@ class Modele():
         self.creeps_inactifs = []
         self.creeps_actifs = []
         self.tours = []
+        self.variable_test = 5
 
 
 
@@ -90,11 +91,11 @@ class Modele():
             for creep in self.creeps_actifs:
                 tour.verifier_collision_creep(creep)
 
-    def creer_tours(self, type, niveau, coordos, ID):       #coordos = x & y
+    def creer_tours(self, type, niveau, coordos):       #coordos = x & y
         # appelé par le deposement d'une tour sur le canvas dans Vue
         #unpack les coordos:
         x, y = coordos
-        t = Tour(self, type, x, y, niveau, ID)
+        t = Tour(self, type, x, y, niveau)
         self.tours.append(t)
 
 
