@@ -14,41 +14,10 @@ class Creep():
         self.listePoison = []
         self.troncon = 0
         self.posX, self.posY = self.modele.chemin[self.troncon][0]
-        self.cibleX, self.cibleY = self.modele.chemin[self.troncon][1]
+        self.cibleDebut, self.cibleFin = self.modele.chemin[self.troncon][1]
 
     def hit_creep(self):
         pass
-
-    def deplacer(self): #marche pour troncon 0
-        for creep in self.modele.creeps_actifs:
-
-            # ?? creep.pos == self.cible
-            creep.pos = self.posX, self.posY
-            self.cible = self.cibleX, self.cibleY
-            if creep.pos == self.cible: # si cible atteinte, changer troncon & assigner nouvelle cible
-                self.troncon += 1
-                self.cible = self.modele.chemin[self.troncon][1]   # 0: [(165, 0),   (165, 495)]
-
-            if creep.troncon == 0:
-                    creep.posY += 1
-            elif creep.troncon == 1:
-                    creep.posX += 1
-            elif creep.troncon == 2:
-                    creep.posY -= 1
-            elif creep.troncon == 3:
-                    creep.posX += 1
-            elif creep.troncon == 4:
-                    creep.posY += 1
-            elif creep.troncon == 5:
-                    creep.posX -= 1
-            elif creep.troncon == 6:
-                    creep.posY += 1
-            elif creep.troncon == 7:
-                    creep.posX += 1
-
-
-
-
 
 
     def check_en_vie(self):
