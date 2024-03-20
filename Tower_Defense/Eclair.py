@@ -13,10 +13,11 @@ class Eclair:
         self.couleur = "yellow" # a la base niv 1
 
 
-    def cibler_creep(self):
-        # self.cibleX =
-        # self.cibleY =
-        pass
+
+    def cibler_creep(self, creep):
+        self.cibleX = creep.posX
+        self.cibleY = creep.posY
+        print(creep.id) #TEST
 
 
     def afficher_shot(self):

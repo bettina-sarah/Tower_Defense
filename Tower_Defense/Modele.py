@@ -1,5 +1,6 @@
 import os.path
 import random
+import math
 
 import time
 #import Creeps as Creeps
@@ -49,12 +50,11 @@ class Modele():
         #         }
 
 
-        self.nbCreeps = 20
+        self.nbCreeps = 20 #PROBLEME LES 2 PREMIERS CREEPS SONT CRÉES EN MEME TEMPS
         self.creeps_inactifs = []
         self.creeps_actifs = []
         self.tours = []
         self.variable_test = 5
-
 
 
 
@@ -98,21 +98,26 @@ class Modele():
                 creep.posY += max(dy, -creep.vitesse)
 
             if creep.troncon == len(self.chemin) - 1 and (creep.posX, creep.posY) == creep.cibleFin:
-                self.suppression_creeps(creep.id)
-                self.nbVies -= 1
-                print(self.nbVies)
+                self.hit_chateau(creep)
 
     #Méthode pour supprimer les creeps
     def suppression_creeps(self, ID):
+
+        #Passe a travers les creeps actifs
         for creeps in self.creeps_actifs:
+
+            #Prends le bon creep en utilisant le ID
             if ID == creeps.id:
+
+                #Supprime
                 self.creeps_actifs.remove(creeps)
 
 
     def verifier_collision_tours(self):
-        for tour in self.tours:
-            for creep in self.creeps_actifs:
-                tour.verifier_collision_creep(creep)
+        if len(self.tours) > 0:
+            for tour in self.tours:
+                for creep in self.creeps_actifs:
+                    tour.verifier_collision_creep(creep)
 
     def creer_tours(self, type, niveau, coordos):       #coordos = x & y
         # appelé par le deposement d'une tour sur le canvas dans Vue
@@ -120,6 +125,24 @@ class Modele():
         x, y = coordos
         t = Tour(self, type, x, y, niveau)
         self.tours.append(t)
+        print("Tour ajout")
+
+    def hit_chateau(self, creep):
+        self.suppression_creeps(creep.id)
+        self.nbVies -= 1
+        print(self.nbVies)
+        #changer la vie dans la vue?
+
+    def amelioration_tours(self, id):
+        # Méthode pour améliorer le niveau de la tour
+        for tour in self.tours:
+            if tour == id :
+                if tour.niveau <= 3:
+                    tour.niveau += 1
+
+
+    def distance_pts(self, x1, y1, x2, y2):
+        return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
 
 
 

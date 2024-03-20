@@ -51,7 +51,6 @@ class Vue:
                 if self.tour_en_cours == "Projectile":
                     self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
                                             rectangle_y + 45, fill="orange", tag="projectile")
-
                     self.parent.creer_tours("Projectile", 1, coordos)
                     self.canvas1.tag_bind("projectile", "<Button-1>", self.afficher_amelioration)
 
