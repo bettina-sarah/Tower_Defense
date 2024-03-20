@@ -14,7 +14,7 @@ class Vue:
         self.fenetre_hauteur = 960
         # self.create_canvases()
         total_height = 960
-        canvas1_height = total_height/4 * 3 # 3/4 du ratio
+        self.canvas1_height = total_height/4 * 3 # 3/4 du ratio
         self.canvas2_height = total_height/4  # 1/4
         self.placement_tours = False
         self.road_items = []
@@ -23,7 +23,7 @@ class Vue:
         self.boutonTour2_id = None
         self.boutonTour3_id = None
 
-        self.create_canvases(canvas1_height, self.canvas2_height)
+        self.create_canvases(self.canvas1_height, self.canvas2_height)
         self.creer_infos_joueur()
         self.creer_menu_choix_tours()
         self.create_troncons()
@@ -298,6 +298,26 @@ class Vue:
        #
        # self.canvas1.create_rectangle(blocBD_coords,finBD_coords,
        #                               fill=self.modele.chateau_couleur, tags=("troncon",))
-        self.canvas1.create_rectangle(894,438,972,528,fill=self.modele.chateau_couleur, tags= "chateau")
+        self.canvas1.create_rectangle(894,450,972,550,fill=self.modele.chateau_couleur, tags= "chateau")
 
-    def gameOver(self):
+    def game_over(self):
+        x = self.fenetre_largeur / 4
+        y = self.canvas1_height / 5
+        self.titre_game_over = Label(self.canvas1, text='GAME OVER', font=('Helvetica', 30), fg='white',
+                                       bg='black')
+        self.titre_game_over_id = self.canvas1.create_window(x * 2, y / 5, anchor="center",
+                                                               window=self.titre_game_over)
+        self.titre_question = Label(self.canvas1, text='Commencer nouvelle partie?', font=('Helvetica', 30), fg='white',
+                                       bg='black')
+        self.titre_question_id = self.canvas1.create_window(x * 1.5, y * 4, anchor="center",
+                                                               window=self.titre_question)
+
+        self.boutonPartie = Button(self.canvas1, text='Oui', font=('Helvetica', 11), bg='white', width=5,
+                                  height=5)
+        self.boutonPartie_id = self.canvas1.create_window(x * 2.5, y * 4.5, anchor="center", window=self.boutonPartie)
+        self.boutonPartie.bind("<Button-1>", self.parent.start_new_game)
+
+    def clear_game_over(self):
+        self.canvas1.delete(self.titre_game_over_id)
+        self.canvas1.delete(self.titre_question_id)
+        self.canvas1.delete(self.boutonPartie_id)

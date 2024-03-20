@@ -56,7 +56,14 @@ class Modele():
         self.tours = []
         self.variable_test = 5
 
-
+    def reinitialiser_modele(self):
+        self.chronoStarted = False
+        self.enVie = True
+        self.chrono = 2
+        self.nbVies = 20
+        self.nbCreeps = 20  # PROBLEME LES 2 PREMIERS CREEPS SONT CRÉES EN MEME TEMPS
+        self.creeps_inactifs = []
+        self.creeps_actifs = []
 
     # Méthode Création des Creeps pour le niveau
     def creer_niveau(self):
@@ -71,7 +78,7 @@ class Modele():
 
             self.creeps_actifs.append(self.creeps_inactifs.pop())
             # self.parent.vue.afficher_creeps()
-        self.parent.vue.root.after(1000, self.spawn_creep)
+        self.parent.vue.root.after(1500, self.spawn_creep)
 
     def deplacer_creeps(self):
         for creep in self.creeps_actifs:
