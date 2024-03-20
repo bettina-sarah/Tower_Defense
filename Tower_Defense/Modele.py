@@ -12,11 +12,12 @@ from Tour import *
 class Modele():
     def __init__(self, parent):
         self.parent = parent
-        self.chronoStarted = False
+        self.chronoMax = 60
+        self.chrono = 0
         self.enVie = True
-        self.chrono = 2  # a remettre a 10
+        # self.chrono = 2  # a remettre a 10
         self.argent = 500
-        self.nbVies = 20
+        self.nbVies = 2000
         self.vague = 0
         # Chemin fait en ligne au lieu de rectangle
         self.chemin = {
@@ -54,13 +55,20 @@ class Modele():
     def jouer_prochain_coup(self):
         # tester si on a un niveau en cours
         if self.creeps_actifs or self.creeps_inactifs:
-            if self.creeps_inactifs and self.delai_spawn_time == 0:
+            if self.creeps_inactifs and self.delai_spawn_time < 1:
                 self.spawn_creep()
                 self.delai_spawn_time = self.delai_spawn_time_max
             else:
                 self.delai_spawn_time -= 1
         else:
-            self.creer_niveau()
+            if self.chrono < 1:
+                self.chrono = self.chronoMax
+            else:
+                self.chrono -= 1
+                if self.chrono == 0:
+                    self.creer_niveau()
+        for i in self.creeps_actifs:
+            i.jouer_coup()
 
         for i in self.tours:
             i.jouer_prochain_coup()
