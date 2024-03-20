@@ -261,6 +261,7 @@ class Vue:
         self.canvas1.create_rectangle(894, 438, 972, 528, fill=self.modele.chateau_couleur, tags="chateau")
         self.canvas1.create_rectangle(894,450,972,550,fill=self.modele.chateau_couleur, tags= "chateau")
 
+<<<<<<< HEAD
     def game_over(self):
         x = self.fenetre_largeur / 4
         y = self.canvas1_height / 5
@@ -282,3 +283,7 @@ class Vue:
         self.canvas1.delete(self.titre_game_over_id)
         self.canvas1.delete(self.titre_question_id)
         self.canvas1.delete(self.boutonPartie_id)
+=======
+
+
+>>>>>>> Justin3
