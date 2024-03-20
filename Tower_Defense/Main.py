@@ -51,12 +51,13 @@ class Controleur():
 
             self.vue.root.after(50, self.animer_jeu)
         else:
-            #gameover() ou new game ...
-            pass
+            self.game_over()
 
     def creer_tours(self, type, niveau, coordos):
         self.modele.creer_tours(type,niveau, coordos)
 
+    def game_over(self):
+        self.vue.gameOver()
 
 
     def start_new_game(self):
