@@ -48,6 +48,7 @@ class Controleur():
                 self.modele.deplacer_creeps()
                 self.vue.afficher_creeps()
                 self.modele.verifier_collision_tours()
+                self.update_vie()
 
             self.vue.root.after(50, self.animer_jeu)
         else:
@@ -62,6 +63,10 @@ class Controleur():
     def start_new_game(self):
         # demande au user si new game ou non Y/N
         pass
+
+    def update_vie(self):
+        self.vue.update_vie()
+
 
 
 if __name__ == "__main__":

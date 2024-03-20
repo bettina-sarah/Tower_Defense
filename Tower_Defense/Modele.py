@@ -130,6 +130,7 @@ class Modele():
     def hit_chateau(self, creep):
         self.suppression_creeps(creep.id)
         self.nbVies -= 1
+
         print(self.nbVies)
         #changer la vie dans la vue?
 
