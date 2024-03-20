@@ -213,14 +213,14 @@ class Vue:
     def afficherChrono(self, time_left):
         self.chrono.config(text=str(time_left))
 
-    def afficher_vague(self):
-        self.vague.config(text=str(self.modele.vague))
+    # def afficher_vague(self):
+    #     self.vague.config(text=str(self.modele.vague))
 
-    def update_vie(self):
-        self.nbVie.config(text=str(self.modele.nbVies))
+    # def update_vie(self):
+    #     self.nbVie.config(text=str(self.modele.nbVies))
 
-    def update_argent(self):
-        self.argent.config(text=str(self.modele.argent))
+    # def update_argent(self):
+    #     self.argent.config(text=str(self.modele.argent))
 
     def create_circle(self, x, y, canvas):  # Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
         r = 20  # test
@@ -237,6 +237,9 @@ class Vue:
         for i in self.modele.creeps_actifs:
             self.create_circle(i.posX, i.posY, self.canvas1)
         self.nbVie.config(text=str(self.modele.nbVies))
+        self.vague.config(text=str(self.modele.vague))
+        self.argent.config(text=str(self.modele.argent))
+
 
     def create_troncons(self):
         for i in self.modele.chemin.keys():
