@@ -225,6 +225,9 @@ class Vue:
     def afficher_vague(self):
         self.vague.config(text=str(self.modele.vague))
 
+    def update_vie(self):
+        self.nbVie.config(text=str(self.modele.nbVies))
+
 
 
     def create_circle(self, x, y, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon

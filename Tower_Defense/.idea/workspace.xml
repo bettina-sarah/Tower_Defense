@@ -6,6 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="3880cddb-a524-4980-a913-cbe31976ac95" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Tower_Defense.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Tower_Defense.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_40_a_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_40_a_m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_40_a_m___Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_40_a_m___Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_43_a_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_43_a_m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/Creep.py" beforeDir="false" afterPath="$PROJECT_DIR$/Creep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modele.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creep.py" beforeDir="false" afterPath="$PROJECT_DIR$/Creep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Eclair.py" beforeDir="false" afterPath="$PROJECT_DIR$/Eclair.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modele.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vue.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +46,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/coding/PYTHON - Genie logiciel/Tower_Defense/Tower_Defense",
+    "settings.editor.selected.configurable": "preferences.editor"
+>>>>>>> 09ecae9d632a0bbe50f9e515b674c1294ca05e1a
   }
 }</component>
   <component name="RunManager">
