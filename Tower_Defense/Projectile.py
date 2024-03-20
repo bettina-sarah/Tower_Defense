@@ -9,7 +9,7 @@ class Projectile:
         self.cible = creep
         self.cibleX = creep.posX # ajusté dans cibler creep
         self.cibleY = creep.posY
-        self.vitesse = 60
+        self.vitesse = 40
         self.taille = 10
         self.dommage = 10
         self.niveau = tour.amelioration
@@ -19,14 +19,14 @@ class Projectile:
 
         if self.niveau == 2: # balle rapide
             self.couleur = "MediumPurple4"
-            self.vitesse = 10
+            self.vitesse = 70
             self.dommage = 10
             self.taille = 10
             self.cooldown = 2
 
         elif self.niveau == 3: # grenade : taille grande, vitesse lente,
             self.couleur = "tomato"
-            self.vitesse = 5
+            self.vitesse = 80
             self.dommage = 15
             self.taille = 10
             self.cooldown = 50
