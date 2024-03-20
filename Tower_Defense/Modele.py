@@ -68,7 +68,6 @@ class Modele():
 
     def spawn_creep(self): #pop de creep inactif et append dans creep actif
         if len(self.creeps_inactifs) > 0:
-
             self.creeps_actifs.append(self.creeps_inactifs.pop())
             # self.parent.vue.afficher_creeps()
         self.parent.vue.root.after(1000, self.spawn_creep)
@@ -113,11 +112,12 @@ class Modele():
                 self.creeps_actifs.remove(creeps)
 
 
+
     def verifier_collision_tours(self):
         if len(self.tours) > 0:
             for tour in self.tours:
                 for creep in self.creeps_actifs:
-                    tour.verifier_collision_creep(creep)
+                    tour.jouer_coup( )
 
     def creer_tours(self, type, niveau, coordos):       #coordos = x & y
         # appelé par le deposement d'une tour sur le canvas dans Vue

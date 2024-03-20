@@ -300,4 +300,5 @@ class Vue:
        #                               fill=self.modele.chateau_couleur, tags=("troncon",))
         self.canvas1.create_rectangle(894,438,972,528,fill=self.modele.chateau_couleur, tags= "chateau")
 
-    def gameOver(self):
+
+
