@@ -50,6 +50,7 @@ class Modele():
         self.delai_spawn_time = 0
         self.delai_spawn_time_max = 10
 
+
     def jouer_prochain_coup(self):
         # tester si on a un niveau en cours
         if self.creeps_actifs or self.creeps_inactifs:

@@ -232,10 +232,11 @@ class Vue:
 
     # Affichage des Creeps actifs sur le canvas. Utilise la méthode create_circle
 
-    def afficher_creeps(self):
+    def afficher_jeu(self):
         self.canvas1.delete("creep")
         for i in self.modele.creeps_actifs:
             self.create_circle(i.posX, i.posY, self.canvas1)
+        self.nbVie.config(text=str(self.modele.nbVies))
 
     def create_troncons(self):
         for i in self.modele.chemin.keys():
