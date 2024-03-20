@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3880cddb-a524-4980-a913-cbe31976ac95" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_40_a_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_40_a_m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_40_a_m___Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_40_a_m___Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_43_a_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-18_9_43_a_m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Creep.py" beforeDir="false" afterPath="$PROJECT_DIR$/Creep.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modele.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modele.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modele.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tour.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tour.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vue.py" afterDir="false" />
+>>>>>>> gabriel
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +25,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="gui-amelioration-tours" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -54,6 +69,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Main" />
         <item itemvalue="Python.Main" />
       </list>
     </recent_temporary>
