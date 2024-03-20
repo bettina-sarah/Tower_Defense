@@ -9,8 +9,8 @@ class Projectile:
         self.cible = creep
         self.cibleX = creep.posX # ajusté dans cibler creep
         self.cibleY = creep.posY
-        self.vitesse = 3
-        self.taille = 3
+        self.vitesse = 60
+        self.taille = 10
         self.dommage = 10
         self.niveau = tour.amelioration
         self.couleur = "azure4" # a la base niv 1
@@ -52,6 +52,7 @@ class Projectile:
 
     def deplacer(self):
         self.departX, self.departY = helper.Helper.getAngledPoint(self.angle,self.vitesse,self.departX,self.departY)
+
 
     def verifier_impact(self):
         if self.distance_pts(self.departX, self.departY, self.cibleX, self.cibleY) <= self.zone_impact:

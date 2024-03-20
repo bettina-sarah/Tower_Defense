@@ -234,11 +234,16 @@ class Vue:
 
     def afficher_jeu(self):
         self.canvas1.delete("creep")
+        self.canvas1.delete("projectile")
         for i in self.modele.creeps_actifs:
             self.create_circle(i.posX, i.posY, self.canvas1)
         self.nbVie.config(text=str(self.modele.nbVies))
         self.vague.config(text=str(self.modele.vague))
         self.argent.config(text=str(self.modele.argent))
+        for i in self.modele.tours:
+            for j in i.ammo:
+                self.canvas1.create_oval(j.departX - 2, j.departY - 2, j.departX + 2, j.departY +2, fill="yellow", tag=("projectile",))
+
 
 
     def create_troncons(self):

@@ -37,9 +37,7 @@ class Tour:
 
             self.taille = 150
 
-    def jouer_prochain_coup(self):
-        pass
-        # si projectile ou poison et si je suis pret a tirer.
+
     def verifier_collision_creep(self, creep):
 
             self.cout = 150 * self.amelioration
@@ -70,7 +68,7 @@ class Tour:
     def create_Eclair(self, niveau):
         return Eclair(self.modele, self.x, self.y)
 
-    def jouer_coup(self):
+    def jouer_prochain_coup(self):
         if self.delais_tir == 0:
             creep_cible = self.trouver_cible()
             if creep_cible:
