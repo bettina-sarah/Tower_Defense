@@ -4,5 +4,8 @@
     <option name="sdkName" value="Python 3.12 (Red_Square_Game)" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9 (Tower_Defense)" project-jdk-type="Python SDK" />
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12" project-jdk-type="Python SDK" />
+=======
+>>>>>>> Justin3
 </project>

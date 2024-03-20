@@ -10,7 +10,11 @@ class Creep():
         self.couleur = "red3"
         self.dommage = 0
         self.pointsDeVie = 20 * vague
+<<<<<<< HEAD
         self.vitesse = (20 * vague)/1.8
+=======
+        self.vitesse = 10 * vague
+>>>>>>> Justin3
         self.listePoison = []
         self.troncon = 0
         self.posX, self.posY = self.modele.chemin[self.troncon][0]

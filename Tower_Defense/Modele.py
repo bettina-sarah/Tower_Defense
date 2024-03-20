@@ -126,11 +126,16 @@ class Modele():
                 # Supprime
                 self.creeps_actifs.remove(creeps)
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> Justin3
     def verifier_collision_tours(self):
         if len(self.tours) > 0:
             for tour in self.tours:
                 for creep in self.creeps_actifs:
-                    tour.verifier_collision_creep(creep)
+                    tour.jouer_coup( )
 
     def creer_tours(self, x, y, niveau, type):  # coordos = x & y
         # appelé par le deposement d'une tour sur le canvas dans Vue
