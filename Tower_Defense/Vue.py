@@ -69,6 +69,7 @@ class Vue:
                                          tour.x + 40 + + tour.rayon,
                                          tour.y + 45 + tour.rayon, outline="red")
             self.canvas1.tag_bind(self.tour_en_cours, "<Button-1>", self.afficher_amelioration)
+            self.placement_tours = False
 
     # def creer_projectiles(self):
     #     for tour in self.modele.tours:
