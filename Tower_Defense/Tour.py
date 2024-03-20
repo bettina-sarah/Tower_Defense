@@ -20,64 +20,30 @@ class Tour:
         if self.type == "Projectile":
             self.couleur = "dark violet"
             self.rayon = 100
-<<<<<<< HEAD
-=======
+
             self.cout = 100 * self.amelioration
->>>>>>> Justin3
+
             self.taille = 100
         elif self.type == "Eclair":
             self.couleur = "DarkGoldenrod2"
             self.rayon = 120
-<<<<<<< HEAD
-=======
+
             self.cout = 120 * self.amelioration
->>>>>>> Justin3
+
             self.taille = 120
         elif self.type == "Poison":
             self.couleur = "lime green"
             self.rayon = 150
-<<<<<<< HEAD
+
             self.taille = 150
 
     def jouer_prochain_coup(self):
         pass
         # si projectile ou poison et si je suis pret a tirer.
     def verifier_collision_creep(self, creep):
-=======
+
             self.cout = 150 * self.amelioration
             self.taille = 150
-
-
-    # def verifier_collision_creep(self, creep):
-    #     if self.cible is None:  # Vérifie s'il n'y a pas de cible actuelle
-    #         if self.rayon >= self.modele.distance_pts(creep.posX, creep.posY, self.x, self.y):
-    #             self.cible = creep  # Définit le creep comme cible
-    #             self.tirer(self.type, self.niveau, creep)
-    #             print("shoot" + str(creep.id))
-    #     elif creep == self.cible:  # Si le creep est la cible actuelle
-    #         # Vérifie si le creep est toujours dans la portée de la tour
-    #         if self.rayon >= self.modele.distance_pts(creep.posX, creep.posY, self.x, self.y):
-    #             self.tirer(self.type, self.niveau, creep)
-    #             print("shoot" + str(creep.id))
-    #         else:
-    #             self.cible = None  # Réinitialise la cible si le creep sort de la portée
->>>>>>> Justin3
-        # if self.rayon ==
-        #if self.niveau = 2 ou 3 .. faire un laser
-        # niveau 2: red2
-        # niveau 3: red4
-
-         #Si la distance entre le creep et la Tour est plus petit que le rayon, la Tour tire
-         # if self.rayon >= self.modele.distance_pts(creep.posX, creep.posY, self.x, self.y):
-         #     for creep2 in self.creepcible:
-         #         if creep2 == creep.id:
-         #            break
-         #    else:
-         #        self.creepcible.append(creep)
-         #    print("shoot") #Test pour voir si la fonction marche
-         #    self.tirer(self.type, self.niveau, self.creepcible[0])
-         #    print("shoot " + str(creep.id)) #TEST
-              # TEST
 
 
 
@@ -140,22 +106,3 @@ class Tour:
 
         return None  # Retourner None si aucun creep n'est dans la portée
 
-
-
-
-
-
-
-    #def create_projectile(self, target_x, target_y):
-         # Créer un projectile en fonction du type de la tour
-    #     return Projectile(self.x, self.y, target_x, target_y, self.damage, self.level, self.type)
-    #
-    # def upgrade(self):
-    #     # Méthode pour améliorer la tour
-    #     if self.level < 3:
-    #         self.level += 1
-    #         # Augmenter les caractéristiques de la tour en fonction du niveau
-    #         # (par exemple, augmenter les dégâts, la portée, etc.)
-    #         self.damage *= 1.5
-    #         self.range *= 1.2
-    #         self.upgrade_cost *= 1.5

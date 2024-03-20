@@ -17,7 +17,6 @@ class Projectile:
         self.zone_impact = 10
         self.angle = helper.Helper.calcAngle(self.departX, self.departY, self.cibleX, self.cibleY)
 
-<<<<<<< HEAD
         if self.niveau == 2: # balle rapide
             self.couleur = "MediumPurple4"
             self.vitesse = 10
@@ -31,21 +30,6 @@ class Projectile:
             self.dommage = 15
             self.taille = 10
             self.cooldown = 50
-=======
-        # if self.niveau == 2: # balle rapide
-        #     self.couleur = "MediumPurple4"
-        #     self.vitesse = 10
-        #     self.dommage = 10
-        #     self.taille = 10
-        #     self.cooldown = 2
-        #
-        # elif self.niveau == 3: # grenade : taille grande, vitesse lente,
-        #     self.couleur = "tomato"
-        #     self.vitesse = 5
-        #     self.dommage = 15
-        #     self.taille = 10
-        #     self.cooldown = 5
->>>>>>> Justin3
 
     def cibler_creep(self):
         # self.cibleX =
