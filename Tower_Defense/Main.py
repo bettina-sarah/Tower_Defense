@@ -14,7 +14,7 @@ class Controleur():
 
     def commencer_partie(self):
         if self.vue:
-            if self.modele.enVie:  # while infini sinon rien pour l'arreter
+            if self.modele.enVie:
                 self.modele.creer_niveau() #cree la vague et creeps inactifs
                 if not self.modele.chronoStarted:
                     self.start_chrono()
@@ -37,12 +37,9 @@ class Controleur():
     def changer_vague(self):
         self.vue.afficher_vague()
 
-
-
-
-
     def animer_jeu(self):
         #vue affiche creeps
+        self.checkVie()
         if self.modele.enVie:
             if not self.modele.chronoStarted:
                 self.modele.deplacer_creeps()
@@ -62,13 +59,22 @@ class Controleur():
     def tour_a_creer(self, tour):
         self.vue.creer_tours(tour)
 
+    def checkVie(self):
+        if self.modele.nbVies == 0:
+            self.modele.enVie = False
+
     def game_over(self):
-        self.vue.gameOver()
+        self.vue.game_over()
 
 
-    def start_new_game(self):
-        # demande au user si new game ou non Y/N
-        pass
+    def start_new_game(self, event):
+        print("start_new_game")
+        self.vue.root.after_cancel(self.commencer_partie)
+        self.vue.root.after_cancel(self.modele.spawn_creep)
+        self.vue.clear_game_over()
+        self.modele.reinitialiser_modele()
+        self.vue.root.after(1000, self.commencer_partie)
+        self.vue.root.after(2000, self.modele.spawn_creep)
 
     def update_vie(self):
         self.vue.update_vie()

@@ -42,11 +42,37 @@ class Modele():
             "Poison_2": 190,
             "Poison_3": 230,
         }
-        self.nbCreeps = 20  # PROBLEME LES 2 PREMIERS CREEPS SONT CRÉES EN MEME TEMPS
+        self.nbCreeps = 20 #PROBLEME LES 2 PREMIERS CREEPS SONT CRÉES EN MEME TEMPS
         self.creeps_inactifs = []
         self.creeps_actifs = []
         self.tours = []
         self.variable_test = 5
+        self.delai_spawn_time = 0
+        self.delai_spawn_time_max = 10
+
+    def jouer_prochain_coup(self):
+        # tester si on a un niveau en cours
+        if self.creeps_actifs or self.creeps_inactifs:
+            if self.creeps_inactifs and self.delai_spawn_time == 0:
+                self.spawn_creep()
+                self.delai_spawn_time = self.delai_spawn_time_max
+            else:
+                self.delai_spawn_time -= 1
+        else:
+            self.creer_niveau()
+
+        for i in self.tours:
+            i.jouer_prochain_coup()
+
+
+    def reinitialiser_modele(self):
+        self.chronoStarted = False
+        self.enVie = True
+        self.chrono = 2
+        self.nbVies = 20
+        self.nbCreeps = 20  # PROBLEME LES 2 PREMIERS CREEPS SONT CRÉES EN MEME TEMPS
+        self.creeps_inactifs = []
+        self.creeps_actifs = []
 
     # Méthode Création des Creeps pour le niveau
     def creer_niveau(self):
@@ -59,7 +85,7 @@ class Modele():
         if len(self.creeps_inactifs) > 0:
             self.creeps_actifs.append(self.creeps_inactifs.pop())
             # self.parent.vue.afficher_creeps()
-        self.parent.vue.root.after(1000, self.spawn_creep)
+        # self.parent.vue.root.after(1500, self.spawn_creep)
 
     def deplacer_creeps(self):
         for creep in self.creeps_actifs:

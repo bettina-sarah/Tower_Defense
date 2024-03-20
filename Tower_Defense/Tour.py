@@ -26,7 +26,8 @@ class Tour:
             self.rayon = 150
             self.taille = 150
 
-
+    def jouer_prochain_coup(self):
+        # si projectile ou poison et si je suis pret a tirer.
     def verifier_collision_creep(self, creep):
         # if self.rayon ==
         #if self.niveau = 2 ou 3 .. faire un laser
