@@ -24,7 +24,7 @@ class Projectile:
             self.vitesse = 5
             self.dommage = 15
             self.taille = 10
-            self.cooldown = 5
+            self.cooldown = 50
 
     def cibler_creep(self):
         # self.cibleX =

@@ -3,23 +3,24 @@ import random
 import math
 
 import time
-#import Creeps as Creeps
+# import Creeps as Creeps
 from Creep import Creep
 from datetime import datetime
 from Tour import *
+
 
 class Modele():
     def __init__(self, parent):
         self.parent = parent
         self.chronoStarted = False
         self.enVie = True
-        self.chrono = 2 # a remettre a 10
+        self.chrono = 2  # a remettre a 10
         self.argent = 200
         self.nbVies = 20
         self.vague = 0
-        #Chemin fait en ligne au lieu de rectangle
+        # Chemin fait en ligne au lieu de rectangle
         self.chemin = {
-            0: [(165, 0),   (165, 495)],
+            0: [(165, 0), (165, 495)],
             1: [(165, 495), (363, 495)],
             2: [(363, 495), (363, 132)],
             3: [(363, 132), (924, 132)],
@@ -30,33 +31,22 @@ class Modele():
         }
         self.troncon_couleur = "sienna3"
         self.chateau_couleur = "DarkOrchid4"
-        # self.dict_pos_chateau = {
-        #     'coinG': (1080, 480),
-        #     'coinD': (1200, 480),
-        #     'blocHG': (1120, 520),
-        #     'blocHD': (1160, 520),
-        #     'blocMG': (1120, 560),
-        #     'blocMD': (1160, 560),
-        #     'blocBG': (1120, 600),
-        #     'blocBD': (1160, 600),
-        #     'finG': (1120, 520),
-        #     'finD': (1240, 520),
-        #     'finHG': (1160, 560),
-        #     'finHD': (1200, 560),
-        #     'finMG': (1160, 600),
-        #     'finMD': (1200, 600),
-        #     'finBG': (1160, 640),
-        #     'finBD': (1200, 640)
-        #         }
-
-
-        self.nbCreeps = 20 #PROBLEME LES 2 PREMIERS CREEPS SONT CRÉES EN MEME TEMPS
+        self.cout_tours = {
+            "Projectile_1": 100,
+            "Projectile_2": 150,
+            "Projectile_3": 200,
+            "Eclair_1": 120,
+            "Eclair_2": 180,
+            "Eclair_3": 240,
+            "Poison_1": 150,
+            "Poison_2": 190,
+            "Poison_3": 230,
+        }
+        self.nbCreeps = 20  # PROBLEME LES 2 PREMIERS CREEPS SONT CRÉES EN MEME TEMPS
         self.creeps_inactifs = []
         self.creeps_actifs = []
         self.tours = []
         self.variable_test = 5
-
-
 
     # Méthode Création des Creeps pour le niveau
     def creer_niveau(self):
@@ -65,10 +55,8 @@ class Modele():
             c = Creep(self, self.vague, i)
             self.creeps_inactifs.append(c)
 
-
-    def spawn_creep(self): #pop de creep inactif et append dans creep actif
+    def spawn_creep(self):  # pop de creep inactif et append dans creep actif
         if len(self.creeps_inactifs) > 0:
-
             self.creeps_actifs.append(self.creeps_inactifs.pop())
             # self.parent.vue.afficher_creeps()
         self.parent.vue.root.after(1000, self.spawn_creep)
@@ -100,18 +88,16 @@ class Modele():
             if creep.troncon == len(self.chemin) - 1 and (creep.posX, creep.posY) == creep.cibleFin:
                 self.hit_chateau(creep)
 
-    #Méthode pour supprimer les creeps
+    # Méthode pour supprimer les creeps
     def suppression_creeps(self, ID):
 
-        #Passe a travers les creeps actifs
+        # Passe a travers les creeps actifs
         for creeps in self.creeps_actifs:
 
-            #Prends le bon creep en utilisant le ID
+            # Prends le bon creep en utilisant le ID
             if ID == creeps.id:
-
-                #Supprime
+                # Supprime
                 self.creeps_actifs.remove(creeps)
-
 
     def verifier_collision_tours(self):
         if len(self.tours) > 0:
@@ -119,12 +105,16 @@ class Modele():
                 for creep in self.creeps_actifs:
                     tour.verifier_collision_creep(creep)
 
-    def creer_tours(self, type, niveau, coordos):       #coordos = x & y
+    def creer_tours(self, type, niveau, coordos):  # coordos = x & y
         # appelé par le deposement d'une tour sur le canvas dans Vue
-        #unpack les coordos:
+        # unpack les coordos:
+
         x, y = coordos
+        cle_cout_tour = type + " " + str(niveau)
         t = Tour(self, type, x, y, niveau)
         self.tours.append(t)
+        self.argent = - self.cout_tours[cle_cout_tour]
+
         print("Tour ajout")
 
     def hit_chateau(self, creep):
@@ -132,28 +122,14 @@ class Modele():
         self.nbVies -= 1
 
         print(self.nbVies)
-        #changer la vie dans la vue?
+        # changer la vie dans la vue?
 
     def amelioration_tours(self, id):
         # Méthode pour améliorer le niveau de la tour
         for tour in self.tours:
-            if tour == id :
+            if tour == id:
                 if tour.niveau <= 3:
                     tour.niveau += 1
 
-
     def distance_pts(self, x1, y1, x2, y2):
-        return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)

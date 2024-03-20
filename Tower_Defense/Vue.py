@@ -14,8 +14,8 @@ class Vue:
         self.fenetre_hauteur = 960
         # self.create_canvases()
         total_height = 960
-        canvas1_height = total_height/4 * 3 # 3/4 du ratio
-        self.canvas2_height = total_height/4  # 1/4
+        canvas1_height = total_height / 4 * 3  # 3/4 du ratio
+        self.canvas2_height = total_height / 4  # 1/4
         self.placement_tours = False
         self.road_items = []
         self.titre_choix_tours_id = None
@@ -30,57 +30,64 @@ class Vue:
         # self.create_events_amelioraton()
         self.create_chateau_canvas()
 
-
-
-
-
     def creer_tour(self, event):
 
-            rectangle_x = event.x + 20
-            rectangle_y = event.y
-            coordos = rectangle_x, rectangle_y
+        rectangle_x = event.x + 20
+        rectangle_y = event.y
+        coordos = rectangle_x, rectangle_y
 
-            # Check sil y a un overlap
-            overlapping_items = self.canvas1.find_overlapping(rectangle_x, rectangle_y, rectangle_x + 40,
-                                                        rectangle_y + 45)
-            coordos = event.x, event.y
+        # Check sil y a un overlap
+        overlapping_items = self.canvas1.find_overlapping(rectangle_x, rectangle_y, rectangle_x + 40,
+                                                          rectangle_y + 45)
+        coordos = event.x, event.y
 
-            # Si pas de overlap, place la tour
-            if not any(item in overlapping_items for item in self.road_items) and self.placement_tours == True:
-                self.placement_tours = False
-                if self.tour_en_cours == "Projectile":
-                    self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
-                                            rectangle_y + 45, fill="orange", tag="projectile")
-                    self.parent.creer_tours("Projectile", 1, coordos)
-                    # x1,y1,x2,y2
-                    # liste [-1] donne le dernier element crée dans la liste des tours!
-                    self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon, rectangle_y - + self.modele.tours[-1].rayon, rectangle_x + 40 + + self.modele.tours[-1].rayon,
-                                            rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
-                    self.canvas1.tag_bind("projectile", "<Button-1>", self.afficher_amelioration)
+        # Si pas de overlap, place la tour
+        if not any(item in overlapping_items for item in self.road_items) and self.placement_tours is True:
+            # VERIFIER ARGENT!
+            # and self.modele.argent - self.modele.cout_tours
+            self.placement_tours = False
+            if self.tour_en_cours == "Projectile":
+                self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
+                                              rectangle_y + 45, fill="orange", tag="projectile")
+                self.parent.creer_tours("Projectile", 1, coordos)
+                # x1,y1,x2,y2
+                # liste [-1] donne le dernier element crée dans la liste des tours!
+                self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon,
+                                         rectangle_y - + self.modele.tours[-1].rayon,
+                                         rectangle_x + 40 + + self.modele.tours[-1].rayon,
+                                         rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
+                self.canvas1.tag_bind("projectile", "<Button-1>", self.afficher_amelioration)
 
-                elif self.tour_en_cours == "Eclair":
-                    self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
-                                            rectangle_y + 45, fill="blue", tag="eclair")
-                    self.parent.creer_tours("Eclair", 1, coordos)
+            elif self.tour_en_cours == "Eclair":
+                self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
+                                              rectangle_y + 45, fill="blue", tag="eclair")
+                self.parent.creer_tours("Eclair", 1, coordos)
 
-                    self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon,
-                                             rectangle_y - + self.modele.tours[-1].rayon,
-                                             rectangle_x + 40 + + self.modele.tours[-1].rayon,
-                                             rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
-                    
-                    self.canvas1.tag_bind("eclair", "<Button-1>", self.afficher_amelioration)
-                elif self.tour_en_cours == "Poison":
-                    self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
-                                            rectangle_y + 45, fill="green", tag="poison")
-                    self.parent.creer_tours("Poison", 1, coordos)
+                self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon,
+                                         rectangle_y - + self.modele.tours[-1].rayon,
+                                         rectangle_x + 40 + + self.modele.tours[-1].rayon,
+                                         rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
 
-                    self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon,
-                                             rectangle_y - + self.modele.tours[-1].rayon,
-                                             rectangle_x + 40 + + self.modele.tours[-1].rayon,
-                                             rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
-                    self.canvas1.tag_bind("poison", "<Button-1>", self.afficher_amelioration)
+                self.canvas1.tag_bind("eclair", "<Button-1>", self.afficher_amelioration)
+            elif self.tour_en_cours == "Poison":
+                self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
+                                              rectangle_y + 45, fill="green", tag="poison")
+                self.parent.creer_tours("Poison", 1, coordos)
 
-            # self.verifier_amelioration()
+                self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon,
+                                         rectangle_y - + self.modele.tours[-1].rayon,
+                                         rectangle_x + 40 + + self.modele.tours[-1].rayon,
+                                         rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
+                self.canvas1.tag_bind("poison", "<Button-1>", self.afficher_amelioration)
+
+        # self.verifier_amelioration()
+
+    # def creer_projectiles(self):
+    #     for tour in self.modele.tours:
+    #         for projectile in tour.projectiles:
+    #             # create oval avec coordo du projectile ...
+    #             # self.canvas1.create_oval(x1,y1,x2,y2 ,fill=projectile.couleur)
+    #     pass
 
     def trigger_placement_tours(self, event, tour_en_cours):
         self.placement_tours = not self.placement_tours
@@ -101,33 +108,35 @@ class Vue:
         self.supprimer_menu_choix_tours()
         x = self.fenetre_largeur / 4
         y = self.canvas2_height / 5
-        self.titre_amelioration_tours = Label(self.canvas2, text='Amelioration du tour', font=('Helvetica', 11), fg='white',
-                                           bg='black')
+        self.titre_amelioration_tours = Label(self.canvas2, text='Amelioration du tour', font=('Helvetica', 11),
+                                              fg='white',
+                                              bg='black')
         self.titre_amelioration_tours_id = self.canvas2.create_window(x * 2, y / 2, anchor="center",
-                                                                   window=self.titre_amelioration_tours)
+                                                                      window=self.titre_amelioration_tours)
 
-        self.amelioration_quitter_btn = Button(self.canvas2, text="X",font=('Helvetica', 15))
-        self.quitter_window_id = self.canvas2.create_window(x * 2.5, y/2, anchor="center", window = self.amelioration_quitter_btn)
+        self.amelioration_quitter_btn = Button(self.canvas2, text="X", font=('Helvetica', 15))
+        self.quitter_window_id = self.canvas2.create_window(x * 2.5, y / 2, anchor="center",
+                                                            window=self.amelioration_quitter_btn)
 
         self.amelioration_quitter_btn.bind("<Button-1>", self.supprimer_menu_amelioration)
 
         # variables a chercher en fonction du tour a ameliorer du MODELE
         label_amelioration_texte = f"\n Cout \n\n + Force: {self.modele.variable_test} \n\n\n + Étendu: {self.modele.variable_test} \n"
         self.label_amelioration = Label(self.canvas2, text=label_amelioration_texte, font=('Helvetica', 11), fg='white',
-                                           bg='black')
-        self.amelioration_window_id = self.canvas2.create_window(x * 1.5, y*2.5, anchor="center", window = self.label_amelioration)
-
+                                        bg='black')
+        self.amelioration_window_id = self.canvas2.create_window(x * 1.5, y * 2.5, anchor="center",
+                                                                 window=self.label_amelioration)
 
         self.bouton_ameliorer = Button(self.canvas2, text='AMÉLIORER', font=('Helvetica', 10), bg='white', width=10,
-                                  height=5)
-        self.bouton_ameliorer_id = self.canvas2.create_window(x * 2, y * 2, anchor="center", window=self.bouton_ameliorer)
+                                       height=5)
+        self.bouton_ameliorer_id = self.canvas2.create_window(x * 2, y * 2, anchor="center",
+                                                              window=self.bouton_ameliorer)
 
         label_tour_actuel_texte = f"\n Tour \n\n  Force: {self.modele.variable_test} \n\n\n  Étendu: {self.modele.variable_test} \n"
         self.label_tour_actuel = Label(self.canvas2, text=label_tour_actuel_texte, font=('Helvetica', 11), fg='white',
-                                           bg='black')
-        self.tour_actuel_window_id = self.canvas2.create_window(x * 2.5, y * 2.5, anchor="center", window = self.label_tour_actuel)
-
-
+                                       bg='black')
+        self.tour_actuel_window_id = self.canvas2.create_window(x * 2.5, y * 2.5, anchor="center",
+                                                                window=self.label_tour_actuel)
 
     def supprimer_menu_amelioration(self, event):
         self.canvas2.delete(self.titre_amelioration_tours_id)
@@ -138,38 +147,30 @@ class Vue:
 
         self.creer_menu_choix_tours()
 
-
-
     def creer_infos_joueur(self):
 
         x = self.fenetre_largeur / 4
         y = self.canvas2_height / 5
 
-        self.chronoLabel = Label(self.canvas2, text='Chrono',font=('Helvetica', 11), bg='white', width=5)
-        self.chrono = Label(self.canvas2, text=str(self.modele.chrono), font=('Helvetica', 11),bg='white', width=5)
-        self.canvas2.create_window(x / 2,y * 1 , anchor="center", window=self.chronoLabel)
+        self.chronoLabel = Label(self.canvas2, text='Chrono', font=('Helvetica', 11), bg='white', width=5)
+        self.chrono = Label(self.canvas2, text=str(self.modele.chrono), font=('Helvetica', 11), bg='white', width=5)
+        self.canvas2.create_window(x / 2, y * 1, anchor="center", window=self.chronoLabel)
         self.canvas2.create_window(x / 2, y * 2, anchor="center", window=self.chrono)
-
-
-
-
 
         self.vagueLabel = Label(self.canvas2, text='Vague', font=('Helvetica', 11), bg='white', width=5)
         self.vague = Label(self.canvas2, text=str(self.modele.vague), font=('Helvetica', 11), bg='white', width=5)
         self.canvas2.create_window(x / 2, y * 3, anchor="center", window=self.vagueLabel)
         self.canvas2.create_window(x / 2, y * 4, anchor="center", window=self.vague)
 
-
         self.nbVieLabel = Label(self.canvas2, text='Vies', font=('Helvetica', 11), bg='white', width=5)
         self.nbVie = Label(self.canvas2, text=str(self.modele.nbVies), font=('Helvetica', 11), bg='white', width=5)
         self.canvas2.create_window(x * 3.5, y * 1, anchor="center", window=self.nbVieLabel)
         self.canvas2.create_window(x * 3.5, y * 2, anchor="center", window=self.nbVie)
 
-
         self.argentLabel = Label(self.canvas2, text='Argent', font=('Helvetica', 11), bg='white',
                                  width=5)
         self.argent = Label(self.canvas2, text=str(self.modele.argent), font=('Helvetica', 11), bg='white',
-                                 width=5)
+                            width=5)
 
         self.canvas2.create_window(x * 3.5, y * 3, anchor="center", window=self.argentLabel)
         self.canvas2.create_window(x * 3.5, y * 4, anchor="center", window=self.argent)
@@ -210,8 +211,7 @@ class Vue:
     def create_canvases(self, canvas1_height, canvas2_height):
 
         self.canvas1 = tk.Canvas(self.root, bg='black', height=canvas1_height, width=1280)
-        #self.canvas1.grid(row=0, column=0, sticky="nsew")
-
+        # self.canvas1.grid(row=0, column=0, sticky="nsew")
 
         self.canvas2 = tk.Canvas(self.root, bg='red', height=canvas2_height, width=1280)
         # self.canvas2.grid(row=1, column=0, sticky="nsew") # nord sud est ouest donc il spread pour toucher a tous les bords du grid cell
@@ -230,30 +230,31 @@ class Vue:
     def update_vie(self):
         self.nbVie.config(text=str(self.modele.nbVies))
 
+    def update_argent(self):
+        self.argent.config(text=str(self.modele.argent))
 
-
-    def create_circle(self, x, y, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
-        r = 20 # test
+    def create_circle(self, x, y, canvas):  # Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
+        r = 20  # test
         x0 = x - r
         y0 = y - r
         x1 = x + r
         y1 = y + r
-        return canvas.create_oval(x0, y0, x1, y1, fill = "red3", tags = "creep")
+        return canvas.create_oval(x0, y0, x1, y1, fill="red3", tags="creep")
 
-    #Affichage des Creeps actifs sur le canvas. Utilise la méthode create_circle
+    # Affichage des Creeps actifs sur le canvas. Utilise la méthode create_circle
 
     def afficher_creeps(self):
         self.canvas1.delete("creep")
         for i in self.modele.creeps_actifs:
             self.create_circle(i.posX, i.posY, self.canvas1)
 
-
     def create_troncons(self):
         for i in self.modele.chemin.keys():
             start_coord = self.modele.chemin[i][0]
             end_coord = self.modele.chemin[i][1]
-            self.road_items.append(self.canvas1.create_line(start_coord, end_coord, fill = self.modele.troncon_couleur, width =70, capstyle=tk.ROUND, tags= "troncon"))
-
+            self.road_items.append(
+                self.canvas1.create_line(start_coord, end_coord, fill=self.modele.troncon_couleur, width=70,
+                                         capstyle=tk.ROUND, tags="troncon"))
 
     def create_events_amelioraton(self):
         # attacher event sur le label tower1:
@@ -264,5 +265,4 @@ class Vue:
                         self.choixTourTitreLabel)
 
     def create_chateau_canvas(self):
-        self.canvas1.create_rectangle(894,438,972,528,fill=self.modele.chateau_couleur, tags= "chateau")
-
+        self.canvas1.create_rectangle(894, 438, 972, 528, fill=self.modele.chateau_couleur, tags="chateau")

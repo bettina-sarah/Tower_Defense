@@ -48,7 +48,9 @@ class Controleur():
                 self.modele.deplacer_creeps()
                 self.vue.afficher_creeps()
                 self.modele.verifier_collision_tours()
+                # self.vue.creer_projectiles()
                 self.update_vie()
+                self.update_argent()
 
             self.vue.root.after(50, self.animer_jeu)
         else:
@@ -68,6 +70,8 @@ class Controleur():
     def update_vie(self):
         self.vue.update_vie()
 
+    def update_argent(self):
+        self.vue.update_argent()
 
 
 if __name__ == "__main__":
