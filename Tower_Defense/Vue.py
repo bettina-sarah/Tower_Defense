@@ -30,7 +30,7 @@ class Vue:
         # self.create_events_amelioraton()
         self.create_chateau_canvas()
 
-    def creer_tour(self, event):
+    def verifier_possibilite_tour(self, event):
 
         rectangle_x = event.x + 20
         rectangle_y = event.y
@@ -41,46 +41,29 @@ class Vue:
                                                           rectangle_y + 45)
         coordos = event.x, event.y
 
-        # Si pas de overlap, place la tour
+        # verifier overlap
         if not any(item in overlapping_items for item in self.road_items) and self.placement_tours is True:
-            # VERIFIER ARGENT!
-            # and self.modele.argent - self.modele.cout_tours
-            self.placement_tours = False
-            if self.tour_en_cours == "Projectile":
-                self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
-                                              rectangle_y + 45, fill="orange", tag="projectile")
-                self.parent.creer_tours("Projectile", 1, coordos)
-                # x1,y1,x2,y2
-                # liste [-1] donne le dernier element crée dans la liste des tours!
-                self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon,
-                                         rectangle_y - + self.modele.tours[-1].rayon,
-                                         rectangle_x + 40 + + self.modele.tours[-1].rayon,
-                                         rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
-                self.canvas1.tag_bind("projectile", "<Button-1>", self.afficher_amelioration)
+            #verifier argent & signale au controleur:
+            cle = self.tour_en_cours + "_1"
+            if self.modele.argent - self.modele.cout_tours[cle] > 0:
+                self.parent.creer_tours(rectangle_x, rectangle_y, 1, self.tour_en_cours) # coordos & type en param.
 
-            elif self.tour_en_cours == "Eclair":
-                self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
-                                              rectangle_y + 45, fill="blue", tag="eclair")
-                self.parent.creer_tours("Eclair", 1, coordos)
 
-                self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon,
-                                         rectangle_y - + self.modele.tours[-1].rayon,
-                                         rectangle_x + 40 + + self.modele.tours[-1].rayon,
-                                         rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
 
-                self.canvas1.tag_bind("eclair", "<Button-1>", self.afficher_amelioration)
-            elif self.tour_en_cours == "Poison":
-                self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
-                                              rectangle_y + 45, fill="green", tag="poison")
-                self.parent.creer_tours("Poison", 1, coordos)
 
-                self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon,
-                                         rectangle_y - + self.modele.tours[-1].rayon,
-                                         rectangle_x + 40 + + self.modele.tours[-1].rayon,
-                                         rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
-                self.canvas1.tag_bind("poison", "<Button-1>", self.afficher_amelioration)
 
-        # self.verifier_amelioration()
+
+
+    def creer_tours(self, tour): 
+            self.canvas1.create_rectangle(tour.x, tour.y, tour.x + 40,
+                                              tour.y + 45, fill=tour.couleur, tag=self.tour_en_cours)
+            # x1,y1,x2,y2
+            # liste [-1] donne le dernier element crée dans la liste des tours!
+            self.canvas1.create_oval(tour.x - tour.rayon,
+                                         tour.y - + tour.rayon,
+                                         tour.x + 40 + + tour.rayon,
+                                         tour.y + 45 + tour.rayon, outline="red")
+            self.canvas1.tag_bind(self.tour_en_cours, "<Button-1>", self.afficher_amelioration)
 
     # def creer_projectiles(self):
     #     for tour in self.modele.tours:
@@ -93,7 +76,7 @@ class Vue:
         self.placement_tours = not self.placement_tours
         if self.placement_tours:
             self.tour_en_cours = tour_en_cours
-            self.canvas1.bind("<Button-1>", self.creer_tour)
+            self.canvas1.bind("<Button-1>", self.verifier_possibilite_tour)
 
     # def verifier_amelioration(self):
     #     tags = self.canvas1.gettags()

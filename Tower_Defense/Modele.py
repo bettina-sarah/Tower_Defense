@@ -15,7 +15,7 @@ class Modele():
         self.chronoStarted = False
         self.enVie = True
         self.chrono = 2  # a remettre a 10
-        self.argent = 200
+        self.argent = 500
         self.nbVies = 20
         self.vague = 0
         # Chemin fait en ligne au lieu de rectangle
@@ -105,15 +105,14 @@ class Modele():
                 for creep in self.creeps_actifs:
                     tour.verifier_collision_creep(creep)
 
-    def creer_tours(self, type, niveau, coordos):  # coordos = x & y
+    def creer_tours(self, x, y, niveau, type):  # coordos = x & y
         # appelé par le deposement d'une tour sur le canvas dans Vue
         # unpack les coordos:
-
-        x, y = coordos
-        cle_cout_tour = type + " " + str(niveau)
+        cle_cout_tour = type + "_" + str(niveau)
         t = Tour(self, type, x, y, niveau)
         self.tours.append(t)
-        self.argent = - self.cout_tours[cle_cout_tour]
+        self.argent -= self.cout_tours[cle_cout_tour]
+        self.parent.tour_a_creer(t)
 
         print("Tour ajout")
 

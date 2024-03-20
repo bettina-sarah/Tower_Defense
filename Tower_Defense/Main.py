@@ -56,8 +56,11 @@ class Controleur():
         else:
             self.game_over()
 
-    def creer_tours(self, type, niveau, coordos):
-        self.modele.creer_tours(type,niveau, coordos)
+    def creer_tours(self, x, y, niveau, type):
+        self.modele.creer_tours(x, y, niveau, type)
+
+    def tour_a_creer(self, tour):
+        self.vue.creer_tours(tour)
 
     def game_over(self):
         self.vue.gameOver()
