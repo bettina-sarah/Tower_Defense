@@ -9,7 +9,7 @@ class Tour:
         self.x = x
         self.y = y
         self.niveau = niveau # 1 2 ou 3
-        self.id_tour = 1
+        #self.id_tour = 1
         self.ID = len(self.modele.tours)
         self.projectiles = []  # gere acide lent, acide rapide, acide forte
 
@@ -35,20 +35,48 @@ class Tour:
         #if self.niveau = 2 ou 3 .. faire un laser
         # niveau 2: red2
         # niveau 3: red4
-        pass
 
-    def tirer(self):
-        pass
-
-    def amelioration_tours(self):
-        pass
-
+         #Si la distance entre le creep et la Tour est plus petit que le rayon, la Tour tire
+         if self.rayon >= self.modele.distance_pts(creep.posX, creep.posY, self.x, self.y):
+            #print("shoot") #Test pour voir si la fonction marche
+            self.tirer(self.type, self.niveau, creep)
+            print("shoot") #TEST
 
 
 
 
-    # def create_projectile(self, target_x, target_y):
-    #     # Créer un projectile en fonction du type de la tour
+    def tirer(self, type, niveau, creep):
+        #Verifie le type et niveau de la tour en question et créer un projectile
+        if type == 'Eclair' and niveau == 1:
+            #Création Éclair
+            e = self.create_Eclair(niveau)
+            #rajout dans la liste des projectiles
+            self.projectiles.append(e)
+            #PROBLEME : DOIT SEULEMENT VISÉ UN CREEP A LA FOIS
+            e.cibler_creep(creep)
+
+            pass
+
+
+
+
+    #Amélioration_tours transférer dans modele
+    # def amelioration_tours(self):
+    #     # Méthode pour améliorer le niveau de la tour
+    #     if self.niveau < 3:
+    #         self.niveau += 1
+
+    def create_Eclair(self, niveau):
+
+        return Eclair(self.modele, self.x, self.y)
+
+
+
+
+
+
+    #def create_projectile(self, target_x, target_y):
+         # Créer un projectile en fonction du type de la tour
     #     return Projectile(self.x, self.y, target_x, target_y, self.damage, self.level, self.type)
     #
     # def upgrade(self):

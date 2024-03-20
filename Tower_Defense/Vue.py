@@ -51,7 +51,6 @@ class Vue:
                 if self.tour_en_cours == "Projectile":
                     self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
                                             rectangle_y + 45, fill="orange", tag="projectile")
-
                     self.parent.creer_tours("Projectile", 1, coordos)
                     self.canvas1.tag_bind("projectile", "<Button-1>", self.afficher_amelioration)
 
@@ -209,7 +208,6 @@ class Vue:
     def create_canvases(self, canvas1_height, canvas2_height):
 
         self.canvas1 = tk.Canvas(self.root, bg='black', height=canvas1_height, width=1280)
-        print(canvas1_height)
         #self.canvas1.grid(row=0, column=0, sticky="nsew")
 
 
@@ -221,10 +219,12 @@ class Vue:
         # self.root.grid_rowconfigure(0, weight=3)  # Poids a chaque canvas
         # self.root.grid_rowconfigure(1, weight=1)
 
-
-
     def afficherChrono(self, time_left):
         self.chrono.config(text=str(time_left))
+
+    def afficher_vague(self):
+        self.vague.config(text=str(self.modele.vague))
+
 
 
     def create_circle(self, x, y, canvas):  #Méthode pour créer un cercle prenant les coordonnés du centre et la rayon
@@ -233,7 +233,7 @@ class Vue:
         y0 = y - r
         x1 = x + r
         y1 = y + r
-        return canvas.create_oval(x0, y0, x1, y1, fill = "red3", tags = ("creep",))
+        return canvas.create_oval(x0, y0, x1, y1, fill = "red3", tags = "creep")
 
     #Affichage des Creeps actifs sur le canvas. Utilise la méthode create_circle
 
@@ -247,7 +247,7 @@ class Vue:
         for i in self.modele.chemin.keys():
             start_coord = self.modele.chemin[i][0]
             end_coord = self.modele.chemin[i][1]
-            self.road_items.append(self.canvas1.create_line(start_coord, end_coord, fill = self.modele.troncon_couleur, width =70, capstyle=tk.ROUND, tags= ("troncon")))
+            self.road_items.append(self.canvas1.create_line(start_coord, end_coord, fill = self.modele.troncon_couleur, width =70, capstyle=tk.ROUND, tags= "troncon"))
 
 
     def create_events_amelioraton(self):
@@ -295,5 +295,5 @@ class Vue:
        #
        # self.canvas1.create_rectangle(blocBD_coords,finBD_coords,
        #                               fill=self.modele.chateau_couleur, tags=("troncon",))
-        self.canvas1.create_rectangle(894,438,972,528,fill=self.modele.chateau_couleur)
+        self.canvas1.create_rectangle(894,438,972,528,fill=self.modele.chateau_couleur, tags= "chateau")
 

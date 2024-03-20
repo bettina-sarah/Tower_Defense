@@ -1,5 +1,6 @@
 import os.path
 import random
+import math
 
 import time
 #import Creeps as Creeps
@@ -27,7 +28,6 @@ class Modele():
             6: [(627, 297), (627, 495)],
             7: [(627, 495), (924, 495)],
         }
-
         self.troncon_couleur = "sienna3"
         self.chateau_couleur = "DarkOrchid4"
         # self.dict_pos_chateau = {
@@ -50,12 +50,11 @@ class Modele():
         #         }
 
 
-        self.nbCreeps = 20
+        self.nbCreeps = 20 #PROBLEME LES 2 PREMIERS CREEPS SONT CRÉES EN MEME TEMPS
         self.creeps_inactifs = []
         self.creeps_actifs = []
         self.tours = []
         self.variable_test = 5
-
 
 
 
@@ -76,45 +75,49 @@ class Modele():
 
     def deplacer_creeps(self):
         for creep in self.creeps_actifs:
-            if (creep.posX, creep.posY) == (creep.cibleDebut, creep.cibleFin):
-                # Changer de tronçon si possible
-                if creep.troncon < len(self.modele.chemin) - 1:
-                    creep.troncon += 1
-                   # si on change de troncon
-                    creep.cibleDebut, creep.cibleFin = self.modele.chemin[creep.troncon][1]  # Mettre à jour la cible du creep
-                    # on est arriver a la fin
+            # Si le creep n'a pas atteint la fin du chemin
+            if creep.troncon < len(self.chemin) - 1:
+                # Vérifier si le creep est arrivé à la cible actuelle
+                if (creep.posX, creep.posY) == creep.cibleFin:
+                    creep.troncon += 1  # Passer au tronçon suivant
+                    creep.cibleDebut, creep.cibleFin = self.chemin[creep.troncon][0], self.chemin[creep.troncon][1]
 
-            # Déplacer le creep vers sa cible
-            if creep.troncon == 0:
-                creep.posY += 10
-            elif creep.troncon == 1:
-                creep.posX += 10
-            elif creep.troncon == 2:
-                creep.posY -= 10
-            elif creep.troncon == 3:
-                creep.posX += 10
-            elif creep.troncon == 4:
-                creep.posY += 10
-            elif creep.troncon == 5:
-                creep.posX -= 10
-            elif creep.troncon == 6:
-                creep.posY += 10
-            elif creep.troncon == 7:
-                creep.posX += 10
+            # Déterminer la direction du déplacement
+            dx = creep.cibleFin[0] - creep.posX
+            dy = creep.cibleFin[1] - creep.posY
 
+            # Déplacer le creep dans la direction appropriée
+            if dx > 0:
+                creep.posX += min(dx, creep.vitesse)
+            elif dx < 0:
+                creep.posX += max(dx, -creep.vitesse)
 
+            if dy > 0:
+                creep.posY += min(dy, creep.vitesse)
+            elif dy < 0:
+                creep.posY += max(dy, -creep.vitesse)
 
-#Méthode pour supprimer les creeps
+            if creep.troncon == len(self.chemin) - 1 and (creep.posX, creep.posY) == creep.cibleFin:
+                self.hit_chateau(creep)
+
+    #Méthode pour supprimer les creeps
     def suppression_creeps(self, ID):
+
+        #Passe a travers les creeps actifs
         for creeps in self.creeps_actifs:
+
+            #Prends le bon creep en utilisant le ID
             if ID == creeps.id:
+
+                #Supprime
                 self.creeps_actifs.remove(creeps)
 
 
     def verifier_collision_tours(self):
-        for tour in self.tours:
-            for creep in self.creeps_actifs:
-                tour.verifier_collision_creep(creep)
+        if len(self.tours) > 0:
+            for tour in self.tours:
+                for creep in self.creeps_actifs:
+                    tour.verifier_collision_creep(creep)
 
     def creer_tours(self, type, niveau, coordos):       #coordos = x & y
         # appelé par le deposement d'une tour sur le canvas dans Vue
@@ -122,6 +125,24 @@ class Modele():
         x, y = coordos
         t = Tour(self, type, x, y, niveau)
         self.tours.append(t)
+        print("Tour ajout")
+
+    def hit_chateau(self, creep):
+        self.suppression_creeps(creep.id)
+        self.nbVies -= 1
+        print(self.nbVies)
+        #changer la vie dans la vue?
+
+    def amelioration_tours(self, id):
+        # Méthode pour améliorer le niveau de la tour
+        for tour in self.tours:
+            if tour == id :
+                if tour.niveau <= 3:
+                    tour.niveau += 1
+
+
+    def distance_pts(self, x1, y1, x2, y2):
+        return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
 
 
 
