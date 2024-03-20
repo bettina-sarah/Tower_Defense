@@ -37,10 +37,6 @@ class Controleur():
     def changer_vague(self):
         self.vue.afficher_vague()
 
-
-
-
-
     def animer_jeu(self):
         #vue affiche creeps
         self.checkVie()
@@ -68,6 +64,8 @@ class Controleur():
 
     def start_new_game(self, event):
         print("start_new_game")
+        self.vue.root.after_cancel(self.commencer_partie)
+        self.vue.root.after_cancel(self.modele.spawn_creep)
         self.vue.clear_game_over()
         self.modele.reinitialiser_modele()
         self.vue.root.after(1000, self.commencer_partie)

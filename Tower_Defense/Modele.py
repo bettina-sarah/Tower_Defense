@@ -30,31 +30,28 @@ class Modele():
         }
         self.troncon_couleur = "sienna3"
         self.chateau_couleur = "DarkOrchid4"
-        # self.dict_pos_chateau = {
-        #     'coinG': (1080, 480),
-        #     'coinD': (1200, 480),
-        #     'blocHG': (1120, 520),
-        #     'blocHD': (1160, 520),
-        #     'blocMG': (1120, 560),
-        #     'blocMD': (1160, 560),
-        #     'blocBG': (1120, 600),
-        #     'blocBD': (1160, 600),
-        #     'finG': (1120, 520),
-        #     'finD': (1240, 520),
-        #     'finHG': (1160, 560),
-        #     'finHD': (1200, 560),
-        #     'finMG': (1160, 600),
-        #     'finMD': (1200, 600),
-        #     'finBG': (1160, 640),
-        #     'finBD': (1200, 640)
-        #         }
-
-
         self.nbCreeps = 20 #PROBLEME LES 2 PREMIERS CREEPS SONT CRÉES EN MEME TEMPS
         self.creeps_inactifs = []
         self.creeps_actifs = []
         self.tours = []
         self.variable_test = 5
+        self.delai_spawn_time = 0
+        self.delai_spawn_time_max = 10
+
+    def jouer_prochain_coup(self):
+        # tester si on a un niveau en cours
+        if self.creeps_actifs or self.creeps_inactifs:
+            if self.creeps_inactifs and self.delai_spawn_time == 0:
+                self.spawn_creep()
+                self.delai_spawn_time = self.delai_spawn_time_max
+            else:
+                self.delai_spawn_time -= 1
+        else:
+            self.creer_niveau()
+
+        for i in self.tours:
+            i.jouer_prochain_coup()
+
 
     def reinitialiser_modele(self):
         self.chronoStarted = False
@@ -75,10 +72,9 @@ class Modele():
 
     def spawn_creep(self): #pop de creep inactif et append dans creep actif
         if len(self.creeps_inactifs) > 0:
-
             self.creeps_actifs.append(self.creeps_inactifs.pop())
             # self.parent.vue.afficher_creeps()
-        self.parent.vue.root.after(1500, self.spawn_creep)
+        # self.parent.vue.root.after(1500, self.spawn_creep)
 
     def deplacer_creeps(self):
         for creep in self.creeps_actifs:
