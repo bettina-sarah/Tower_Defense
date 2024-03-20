@@ -16,17 +16,14 @@ class Tour:
         if self.type == "Projectile":
             self.couleur = "dark violet"
             self.rayon = 100
-            self.cout = 100 * self.niveau
             self.taille = 100
         elif self.type == "Eclair":
             self.couleur = "DarkGoldenrod2"
             self.rayon = 120
-            self.cout = 120 * self.niveau
             self.taille = 120
         elif self.type == "Poison":
             self.couleur = "lime green"
             self.rayon = 150
-            self.cout = 150 * self.niveau
             self.taille = 150
 
     def jouer_prochain_coup(self):

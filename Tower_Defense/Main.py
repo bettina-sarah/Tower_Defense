@@ -42,6 +42,7 @@ class Controleur():
         #vue affiche creeps
         self.checkVie()
         if self.modele.enVie:
+
             # if not self.modele.chronoStarted:
             self.modele.jouer_prochain_coup()
             # self.modele.deplacer_creeps()
@@ -49,12 +50,24 @@ class Controleur():
             # self.modele.verifier_collision_tours()
             # self.update_vie()
 
+            if not self.modele.chronoStarted:
+                self.modele.deplacer_creeps()
+                self.vue.afficher_creeps()
+                self.modele.verifier_collision_tours()
+                # self.vue.creer_projectiles()
+                self.update_vie()
+                self.update_argent()
+
+
             self.vue.root.after(50, self.animer_jeu)
         else:
             self.game_over()
 
-    def creer_tours(self, type, niveau, coordos):
-        self.modele.creer_tours(type,niveau, coordos)
+    def creer_tours(self, x, y, niveau, type):
+        self.modele.creer_tours(x, y, niveau, type)
+
+    def tour_a_creer(self, tour):
+        self.vue.creer_tours(tour)
 
     def checkVie(self):
         if self.modele.nbVies == 0:
@@ -76,6 +89,8 @@ class Controleur():
     def update_vie(self):
         self.vue.update_vie()
 
+    def update_argent(self):
+        self.vue.update_argent()
 
 
 if __name__ == "__main__":
