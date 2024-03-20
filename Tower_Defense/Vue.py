@@ -52,17 +52,32 @@ class Vue:
                     self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
                                             rectangle_y + 45, fill="orange", tag="projectile")
                     self.parent.creer_tours("Projectile", 1, coordos)
+                    # x1,y1,x2,y2
+                    # liste [-1] donne le dernier element crée dans la liste des tours!
+                    self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon, rectangle_y - + self.modele.tours[-1].rayon, rectangle_x + 40 + + self.modele.tours[-1].rayon,
+                                            rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
                     self.canvas1.tag_bind("projectile", "<Button-1>", self.afficher_amelioration)
 
                 elif self.tour_en_cours == "Eclair":
                     self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
                                             rectangle_y + 45, fill="blue", tag="eclair")
                     self.parent.creer_tours("Eclair", 1, coordos)
+
+                    self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon,
+                                             rectangle_y - + self.modele.tours[-1].rayon,
+                                             rectangle_x + 40 + + self.modele.tours[-1].rayon,
+                                             rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
+                    
                     self.canvas1.tag_bind("eclair", "<Button-1>", self.afficher_amelioration)
                 elif self.tour_en_cours == "Poison":
                     self.canvas1.create_rectangle(rectangle_x, rectangle_y, rectangle_x + 40,
                                             rectangle_y + 45, fill="green", tag="poison")
                     self.parent.creer_tours("Poison", 1, coordos)
+
+                    self.canvas1.create_oval(rectangle_x - self.modele.tours[-1].rayon,
+                                             rectangle_y - + self.modele.tours[-1].rayon,
+                                             rectangle_x + 40 + + self.modele.tours[-1].rayon,
+                                             rectangle_y + 45 + self.modele.tours[-1].rayon, outline="red")
                     self.canvas1.tag_bind("poison", "<Button-1>", self.afficher_amelioration)
 
             # self.verifier_amelioration()
@@ -114,7 +129,6 @@ class Vue:
 
 
 
-
     def supprimer_menu_amelioration(self, event):
         self.canvas2.delete(self.titre_amelioration_tours_id)
         self.canvas2.delete(self.quitter_window_id)
@@ -123,18 +137,6 @@ class Vue:
         self.canvas2.delete(self.tour_actuel_window_id)
 
         self.creer_menu_choix_tours()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -262,42 +264,5 @@ class Vue:
                         self.choixTourTitreLabel)
 
     def create_chateau_canvas(self):
-       # coinG_coords = self.modele.dict_pos_chateau['coinG']
-       # finG_coords = self.modele.dict_pos_chateau['finG']
-       # self.canvas1.create_rectangle(coinG_coords, finG_coords,
-       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
-       #
-       # coinD_coords = self.modele.dict_pos_chateau['coinD']
-       # finD_coords = self.modele.dict_pos_chateau['finD']
-       # self.canvas1.create_rectangle(coinD_coords,finD_coords,
-       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
-       # blocHG_coords = self.modele.dict_pos_chateau['blocHG']
-       # finHG_coords = self.modele.dict_pos_chateau['finHG']
-       # self.canvas1.create_rectangle(blocHG_coords,finHG_coords,
-       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
-       # blocHD_coords = self.modele.dict_pos_chateau['blocHD']
-       # finHD_coords = self.modele.dict_pos_chateau['finHD']
-       # self.canvas1.create_rectangle(blocHD_coords,finHD_coords,
-       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
-       # blocMG_coords = self.modele.dict_pos_chateau['blocMG']
-       # finMG_coords = self.modele.dict_pos_chateau['finMG']
-       # self.canvas1.create_rectangle(blocMG_coords,finMG_coords,
-       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
-       #
-       # blocMD_coords = self.modele.dict_pos_chateau['blocMD']
-       # finMD_coords = self.modele.dict_pos_chateau['finMD']
-       # self.canvas1.create_rectangle(blocMD_coords,finMD_coords,
-       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
-       # blocBG_coords = self.modele.dict_pos_chateau['blocBG']
-       # finBG_coords = self.modele.dict_pos_chateau['finBG']
-       # self.canvas1.create_rectangle(blocBG_coords,finBG_coords,
-       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
-       #
-       # blocBD_coords = self.modele.dict_pos_chateau['blocBD']
-       # finBD_coords = self.modele.dict_pos_chateau['finBD']
-       #
-       # self.canvas1.create_rectangle(blocBD_coords,finBD_coords,
-       #                               fill=self.modele.chateau_couleur, tags=("troncon",))
         self.canvas1.create_rectangle(894,438,972,528,fill=self.modele.chateau_couleur, tags= "chateau")
 
-    def gameOver(self):
