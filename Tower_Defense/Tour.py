@@ -27,6 +27,7 @@ class Tour:
             self.taille = 150
 
     def jouer_prochain_coup(self):
+        pass
         # si projectile ou poison et si je suis pret a tirer.
     def verifier_collision_creep(self, creep):
         # if self.rayon ==

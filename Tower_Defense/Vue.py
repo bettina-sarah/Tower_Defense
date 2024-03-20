@@ -47,12 +47,15 @@ class Vue:
         if not any(item in overlapping_items for item in self.road_items) and self.placement_tours is True:
             #verifier argent & signale au controleur:
             cle = self.tour_en_cours + "_1"
-            if self.modele.argent - self.modele.cout_tours[cle] > 0:
+            if self.modele.argent - self.modele.cout_tours[cle] >= 0:
                 self.parent.creer_tours(rectangle_x, rectangle_y, 1, self.tour_en_cours) # coordos & type en param.
-
-
-
-
+            else:
+                x = self.fenetre_largeur / 4
+                y = self.canvas2_height / 5
+                self.titre_choix_tours = Label(self.canvas2, text="ERREUR! Pas assez d'argent", font=('Helvetica', 15), fg='white',
+                                               bg='black')
+                self.titre_choix_tours_id = self.canvas2.create_window(x * 2, y * 4, anchor="center",
+                                                                       window=self.titre_choix_tours)
 
 
 
