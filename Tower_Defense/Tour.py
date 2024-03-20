@@ -41,7 +41,9 @@ class Tour:
         pass
 
     def amelioration_tours(self):
-        pass
+        # Méthode pour améliorer le niveau de la tour
+        if self.niveau < 3:
+            self.niveau += 1
 
 
 

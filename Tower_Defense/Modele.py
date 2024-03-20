@@ -75,35 +75,34 @@ class Modele():
 
     def deplacer_creeps(self):
         for creep in self.creeps_actifs:
-            if (creep.posX, creep.posY) == (creep.cibleDebut, creep.cibleFin):
-                # Changer de tronçon si possible
-                if creep.troncon < len(self.modele.chemin) - 1:
-                    creep.troncon += 1
-                   # si on change de troncon
-                    creep.cibleDebut, creep.cibleFin = self.modele.chemin[creep.troncon][1]  # Mettre à jour la cible du creep
-                    # on est arriver a la fin
+            # Si le creep n'a pas atteint la fin du chemin
+            if creep.troncon < len(self.chemin) - 1:
+                # Vérifier si le creep est arrivé à la cible actuelle
+                if (creep.posX, creep.posY) == creep.cibleFin:
+                    creep.troncon += 1  # Passer au tronçon suivant
+                    creep.cibleDebut, creep.cibleFin = self.chemin[creep.troncon][0], self.chemin[creep.troncon][1]
 
-            # Déplacer le creep vers sa cible
-            if creep.troncon == 0:
-                creep.posY += 10
-            elif creep.troncon == 1:
-                creep.posX += 10
-            elif creep.troncon == 2:
-                creep.posY -= 10
-            elif creep.troncon == 3:
-                creep.posX += 10
-            elif creep.troncon == 4:
-                creep.posY += 10
-            elif creep.troncon == 5:
-                creep.posX -= 10
-            elif creep.troncon == 6:
-                creep.posY += 10
-            elif creep.troncon == 7:
-                creep.posX += 10
+            # Déterminer la direction du déplacement
+            dx = creep.cibleFin[0] - creep.posX
+            dy = creep.cibleFin[1] - creep.posY
 
+            # Déplacer le creep dans la direction appropriée
+            if dx > 0:
+                creep.posX += min(dx, creep.vitesse)
+            elif dx < 0:
+                creep.posX += max(dx, -creep.vitesse)
 
+            if dy > 0:
+                creep.posY += min(dy, creep.vitesse)
+            elif dy < 0:
+                creep.posY += max(dy, -creep.vitesse)
 
-#Méthode pour supprimer les creeps
+            if creep.troncon == len(self.chemin) - 1 and (creep.posX, creep.posY) == creep.cibleFin:
+                self.suppression_creeps(creep.id)
+                self.nbVies -= 1
+                print(self.nbVies)
+
+    #Méthode pour supprimer les creeps
     def suppression_creeps(self, ID):
         for creeps in self.creeps_actifs:
             if ID == creeps.id:
